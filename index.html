@@ -3,95 +3,197 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LLA Courtney · Final Delivery</title>
+<title>Courtney · LLA · v16 Final</title>
+<meta name="description" content="Longevity Life Academy · Courtney film · v16 final delivery by Gita Agency">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,800&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0A1428;--blue:#006EFF;--lblue:#5EB6FF;--ice:#F2F7FF;--ink:#0A1428;}
+:root{--navy:#0A1428;--blue:#006EFF;--lblue:#5EB6FF;--ice:#F2F7FF;--ink:#0A1428;--line:#E6EEFA;}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#fff;color:var(--ink);font-family:'Hanken Grotesk',sans-serif;font-size:18px;line-height:1.55}
-.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
-header{background:var(--navy);color:#fff;padding:78px 0 72px;position:relative;overflow:hidden}
-header:after{content:"";position:absolute;width:900px;height:900px;right:-320px;top:-460px;background:radial-gradient(circle,rgba(0,110,255,.42),transparent 62%);pointer-events:none}
-h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(44px,7vw,88px);line-height:1.03;letter-spacing:-.02px}
+html{scroll-behavior:smooth}
+body{background:#fff;color:var(--ink);font-family:'Hanken Grotesk',sans-serif;font-size:18px;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:1220px;margin:0 auto;padding:0 32px}
+@media(max-width:640px){.wrap{padding:0 20px}}
+
+header{background:var(--navy);color:#fff;padding:88px 0 78px;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:960px;height:960px;right:-360px;top:-500px;background:radial-gradient(circle,rgba(0,110,255,.42),transparent 62%);pointer-events:none}
+header:before{content:"";position:absolute;width:640px;height:640px;left:-280px;bottom:-380px;background:radial-gradient(circle,rgba(94,182,255,.22),transparent 65%);pointer-events:none}
+.eyebrow-row{display:flex;align-items:center;gap:12px;margin-bottom:26px;position:relative;z-index:2}
+.mark{width:11px;height:11px;border-radius:50%;background:var(--lblue);box-shadow:0 0 0 6px rgba(94,182,255,.18)}
+.brandline{font-size:16px;color:#A9C8F5;letter-spacing:.3px}
+h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(48px,7.6vw,96px);line-height:1.03;letter-spacing:-.01em;position:relative;z-index:2}
 h1 em{font-style:normal;color:var(--lblue)}
-.sub{margin-top:20px;font-size:21px;color:#A9C8F5;max-width:720px}
-.stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;position:relative;z-index:2}
+.sub{margin-top:22px;font-size:21px;color:#A9C8F5;max-width:740px;position:relative;z-index:2}
+.stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px;position:relative;z-index:2}
 .chip{background:rgba(255,255,255,.07);border-radius:14px;padding:16px 24px}
-.chip b{display:block;font-family:'Fraunces',serif;font-size:30px;font-weight:700;color:#fff}
-.chip span{font-size:15px;color:#8FB6EC;letter-spacing:.4px}
-section{padding:74px 0}
+.chip b{display:block;font-family:'Fraunces',serif;font-size:29px;font-weight:700;color:#fff}
+.chip span{font-size:15px;color:#8FB6EC;letter-spacing:.3px}
+
+section{padding:80px 0}
 .ice{background:var(--ice)}
-h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(32px,4.4vw,52px);line-height:1.08;margin-bottom:14px}
-.lede{font-size:20px;color:#41546F;max-width:760px;margin-bottom:44px}
+h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(34px,4.6vw,54px);line-height:1.08;margin-bottom:14px}
+.lede{font-size:20px;color:#41546F;max-width:780px;margin-bottom:46px}
+
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:34px}
 @media(max-width:860px){.grid{grid-template-columns:1fr}}
+
 .card{background:#fff;border-radius:22px;padding:34px;box-shadow:0 26px 60px -30px rgba(10,40,90,.42),0 2px 6px rgba(10,40,90,.08)}
-.card h3{font-family:'Fraunces',serif;font-size:34px;font-weight:700;margin-bottom:6px}
+.card h3{font-family:'Fraunces',serif;font-size:32px;font-weight:700;margin-bottom:6px}
 .meta{font-size:16px;color:#5A6D89;margin-bottom:22px}
-video{width:100%;border-radius:14px;background:#000;display:block}
-.btn{display:block;text-align:center;margin-top:22px;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;font-size:19px;padding:19px 24px;border-radius:13px;box-shadow:0 16px 34px -14px rgba(0,110,255,.75)}
+video{width:100%;border-radius:14px;background:#000;display:block;aspect-ratio:16/9}
+.btnrow{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.btn{flex:1;min-width:180px;display:block;text-align:center;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;font-size:18px;padding:18px 22px;border-radius:13px;box-shadow:0 16px 34px -14px rgba(0,110,255,.75);transition:background .15s ease}
 .btn:hover{background:#005AD6}
-.btn.ghost{background:#fff;color:var(--navy);border:2px solid #D3E1F6;box-shadow:none;margin-top:12px}
+.btn.ghost{background:#fff;color:var(--navy);border:2px solid #D3E1F6;box-shadow:none}
 .btn.ghost:hover{background:var(--ice)}
+
 table{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(10,40,90,.4)}
-td,th{padding:17px 22px;text-align:left;border-bottom:1px solid #E6EEFA;font-size:17px}
-th{background:var(--navy);color:#fff;font-weight:600;font-size:15px;letter-spacing:.6px}
-td:first-child{font-family:'Fraunces',serif;font-weight:600;width:150px}
-footer{background:var(--navy);color:#87A9DA;padding:46px 0;font-size:16px}
+td,th{padding:18px 22px;text-align:left;border-bottom:1px solid var(--line);font-size:17px}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:15px;letter-spacing:.5px}
+tr:last-child td{border-bottom:none}
+td:first-child{font-family:'Hanken Grotesk',sans-serif;font-weight:700;width:260px;color:var(--navy)}
+.check{color:#0E9F6E;font-weight:700}
+
+.bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:8px}
+@media(max-width:980px){.bgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.bgrid{grid-template-columns:1fr}}
+.hookband{margin-top:56px}
+.hookband:first-child{margin-top:0}
+.hooktitle{display:flex;align-items:baseline;gap:14px;margin-bottom:24px}
+.hooktitle h3{font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--navy)}
+.hooktitle span{font-size:15px;color:#5A6D89;letter-spacing:.3px}
+.bcard{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 20px 46px -26px rgba(10,40,90,.4);display:flex;flex-direction:column}
+.bthumb{position:relative;background:#0A1428;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.bthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.b-1x1 .bthumb{aspect-ratio:1/1}
+.b-4x5 .bthumb{aspect-ratio:4/5}
+.b-9x16 .bthumb{aspect-ratio:9/16}
+.b-191x1 .bthumb{aspect-ratio:1200/628}
+.blabel{padding:16px 18px 6px}
+.blabel b{display:block;font-size:16px;color:var(--navy)}
+.blabel span{font-size:14px;color:#5A6D89}
+.bcard .btn{margin:14px 18px 18px;font-size:16px;padding:14px 18px}
+
+footer{background:var(--navy);color:#87A9DA;padding:52px 0;font-size:16px}
+footer a{color:#A9C8F5}
 </style>
 </head>
 <body>
+
 <header><div class="wrap">
-<h1>Courtney film.<br><em>Final delivery.</em></h1>
-<p class="sub">Both cuts rebuilt on your approved b-roll list. Download either file below, ready to upload.</p>
+<div class="eyebrow-row"><span class="mark"></span><span class="brandline">Longevity Life Academy · Gita Agency</span></div>
+<h1>Courtney &middot; LLA<br><em>v16 Final.</em></h1>
+<p class="sub">Both v16 films, storyboards and the Meta and Instagram banner set for Hook 03 and Hook 04, all in one place.</p>
 <div class="stats">
-<div class="chip"><b>1920 &times; 1080</b><span>H.264 MP4</span></div>
-<div class="chip"><b>30 fps</b><span>Constant frame rate</span></div>
-<div class="chip"><b>101s + 95s</b><span>Two cuts</span></div>
-<div class="chip"><b>AAC stereo</b><span>Audio</span></div>
+<div class="chip"><b>1920 &times; 1080</b><span>30fps h264</span></div>
+<div class="chip"><b>101.077s</b><span>Full cut</span></div>
+<div class="chip"><b>95.104s</b><span>90s cut</span></div>
+<div class="chip"><b>&minus;13.39 LUFS</b><span>&minus;1.39 dBTP</span></div>
 </div>
 </div></header>
 
 <section><div class="wrap">
-<h2>The files</h2>
-<p class="lede">Right click and save, or use the download button. Both play in browser first so you can check before you pull them.</p>
+<h2>The v16 films</h2>
+<p class="lede">Both cuts play in browser first so you can check before you pull them. Download buttons deliver the source MP4 and matching storyboard PDF.</p>
 <div class="grid">
+
 <div class="card">
-<h3>101s Master</h3>
-<p class="meta">1920x1080 · 30fps · 84 MB · full sign-off and outro</p>
-<video controls preload="metadata" poster="poster.jpg" src="LLA-Courtney-101s-Master.mp4"></video>
-<a class="btn" href="LLA-Courtney-101s-Master.mp4" download>Download the 101s Master</a>
-<a class="btn ghost" href="Storyboard-101s.pdf" download>Download the 101s storyboard</a>
+<h3>Full v16</h3>
+<p class="meta">101.077s &middot; 1920x1080 &middot; 30fps &middot; h264 + AAC 48kHz stereo</p>
+<video controls preload="metadata" src="https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_FULL_v16.mp4"></video>
+<div class="btnrow">
+<a class="btn" href="https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_FULL_v16.mp4" download>Download the Full v16</a>
+<a class="btn ghost" href="https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_v16_Storyboard_101s.pdf" download>Download the storyboard</a>
 </div>
+</div>
+
 <div class="card">
-<h3>90s Cut</h3>
-<p class="meta">1920x1080 · 30fps · 83 MB · trimmed for paid placement</p>
-<video controls preload="metadata" poster="poster.jpg" src="LLA-Courtney-90s-Cut.mp4"></video>
-<a class="btn" href="LLA-Courtney-90s-Cut.mp4" download>Download the 90s Cut</a>
-<a class="btn ghost" href="Storyboard-95s.pdf" download>Download the 95s storyboard</a>
+<h3>90s v16</h3>
+<p class="meta">95.104s &middot; 1920x1080 &middot; 30fps &middot; h264 + AAC 48kHz stereo</p>
+<video controls preload="metadata" src="https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_90s_v16.mp4"></video>
+<div class="btnrow">
+<a class="btn" href="https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_90s_v16.mp4" download>Download the 90s v16</a>
+<a class="btn ghost" href="https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_v16_Storyboard_95s.pdf" download>Download the storyboard</a>
 </div>
+</div>
+
 </div>
 </div></section>
 
 <section class="ice"><div class="wrap">
-<h2>What changed in this version</h2>
-<p class="lede">Nine b-roll slots rebuilt against your reference cut. Voiceover, lip sync and hook captions untouched.</p>
+<h2>Verified specs</h2>
+<p class="lede">Every file below has been checked frame by frame and confirmed against delivery spec.</p>
 <table>
-<tr><th>TIME</th><th>WAS</th><th>NOW</th></tr>
-<tr><td>0:09</td><td>Phone feed montage</td><td>Face-mapping woman, your cosmetics clip</td></tr>
-<tr><td>0:12</td><td>Dark doomscroll grade</td><td>Headache shot regraded to your reference</td></tr>
-<tr><td>0:28</td><td>Dawn path</td><td>Battle-rope training, your SPORT clip</td></tr>
-<tr><td>0:32</td><td>Six pillars title card</td><td>Berries macro, your FOOD3 clip</td></tr>
-<tr><td>0:34</td><td>Oximeter insert</td><td>Green smoothie, your FOOD1 clip</td></tr>
-<tr><td>0:47</td><td>18 live sessions card</td><td>White ring transition, your PROTOCOL2 clip</td></tr>
-<tr><td>0:52</td><td>Swimmer</td><td>Indoor cycling, your SPORT3 clip</td></tr>
-<tr><td>1:03</td><td>Website page tour</td><td>Faculty card, your ADD-1 clip</td></tr>
-<tr><td>1:12</td><td>Wearables block</td><td>Particle figure, your END FAST LAST clip</td></tr>
+<tr><th>PROPERTY</th><th>VERIFIED VALUE</th></tr>
+<tr><td>Resolution</td><td><span class="check">&#10003;</span> 1920 &times; 1080</td></tr>
+<tr><td>Frame rate</td><td><span class="check">&#10003;</span> 30fps</td></tr>
+<tr><td>Video codec</td><td><span class="check">&#10003;</span> h264</td></tr>
+<tr><td>Audio codec</td><td><span class="check">&#10003;</span> AAC, 48kHz, stereo</td></tr>
+<tr><td>Loudness</td><td><span class="check">&#10003;</span> &minus;13.39 LUFS integrated</td></tr>
+<tr><td>True peak</td><td><span class="check">&#10003;</span> &minus;1.39 dBTP</td></tr>
+<tr><td>Faststart</td><td><span class="check">&#10003;</span> confirmed, moov atom leads the file</td></tr>
 </table>
 </div></section>
 
-<footer><div class="wrap">Longevity Life Academy · Courtney film · delivered by Gita Agency</div></footer>
+<section><div class="wrap">
+<h2>Meta / Instagram banners</h2>
+<p class="lede">Hook 03 and Hook 04, four aspect ratios each, exported at true pixel size for direct upload to Meta Ads Manager.</p>
+
+<div class="hookband">
+<div class="hooktitle"><h3>Hook 03</h3><span>Decode Your Biomarkers. Extend Your Life.</span></div>
+<div class="bgrid">
+<div class="bcard b-1x1">
+<div class="bthumb"><img src="banners/c_b3_1x1.png" alt="Hook 03 banner, 1080 by 1080 square format" loading="lazy"></div>
+<div class="blabel"><b>1:1 Feed</b><span>1080 &times; 1080</span></div>
+<a class="btn" href="banners/c_b3_1x1.png" download>Download PNG</a>
+</div>
+<div class="bcard b-4x5">
+<div class="bthumb"><img src="banners/c_b3_4x5.png" alt="Hook 03 banner, 1080 by 1350 portrait format" loading="lazy"></div>
+<div class="blabel"><b>4:5 Feed</b><span>1080 &times; 1350</span></div>
+<a class="btn" href="banners/c_b3_4x5.png" download>Download PNG</a>
+</div>
+<div class="bcard b-9x16">
+<div class="bthumb"><img src="banners/c_b3_9x16.png" alt="Hook 03 banner, 1080 by 1920 story format" loading="lazy"></div>
+<div class="blabel"><b>9:16 Story</b><span>1080 &times; 1920</span></div>
+<a class="btn" href="banners/c_b3_9x16.png" download>Download PNG</a>
+</div>
+<div class="bcard b-191x1">
+<div class="bthumb"><img src="banners/c_b3_191x1.png" alt="Hook 03 banner, 1200 by 628 landscape format" loading="lazy"></div>
+<div class="blabel"><b>1.91:1 Link</b><span>1200 &times; 628</span></div>
+<a class="btn" href="banners/c_b3_191x1.png" download>Download PNG</a>
+</div>
+</div>
+</div>
+
+<div class="hookband">
+<div class="hooktitle"><h3>Hook 04</h3><span>The Longevity Course, Taught Live.</span></div>
+<div class="bgrid">
+<div class="bcard b-1x1">
+<div class="bthumb"><img src="banners/c_b4_1x1.png" alt="Hook 04 banner, 1080 by 1080 square format" loading="lazy"></div>
+<div class="blabel"><b>1:1 Feed</b><span>1080 &times; 1080</span></div>
+<a class="btn" href="banners/c_b4_1x1.png" download>Download PNG</a>
+</div>
+<div class="bcard b-4x5">
+<div class="bthumb"><img src="banners/c_b4_4x5.png" alt="Hook 04 banner, 1080 by 1350 portrait format" loading="lazy"></div>
+<div class="blabel"><b>4:5 Feed</b><span>1080 &times; 1350</span></div>
+<a class="btn" href="banners/c_b4_4x5.png" download>Download PNG</a>
+</div>
+<div class="bcard b-9x16">
+<div class="bthumb"><img src="banners/c_b4_9x16.png" alt="Hook 04 banner, 1080 by 1920 story format" loading="lazy"></div>
+<div class="blabel"><b>9:16 Story</b><span>1080 &times; 1920</span></div>
+<a class="btn" href="banners/c_b4_9x16.png" download>Download PNG</a>
+</div>
+<div class="bcard b-191x1">
+<div class="bthumb"><img src="banners/c_b4_191x1.png" alt="Hook 04 banner, 1200 by 628 landscape format" loading="lazy"></div>
+<div class="blabel"><b>1.91:1 Link</b><span>1200 &times; 628</span></div>
+<a class="btn" href="banners/c_b4_191x1.png" download>Download PNG</a>
+</div>
+</div>
+</div>
+
+</div></section>
+
+<footer><div class="wrap">Longevity Life Academy &middot; Courtney film v16 final &middot; delivered by <a href="https://github.com/gitteromri-ux">Gita Agency</a></div></footer>
 </body>
 </html>
