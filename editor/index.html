@@ -1,621 +1,516 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LLA — Editor pack: every scene, real MP4 + PNG</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LLA Editor Pack — every scene and every element as a real file</title><style>*{box-sizing:border-box;margin:0;padding:0}
 body{background:#05070d;color:#eef2f8;font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1180px;margin:0 auto;padding:0 22px 90px}
-header.top{padding:56px 0 30px;border-bottom:1px solid #1b2536}
-h1{font-size:clamp(30px,5vw,56px);line-height:1.02;letter-spacing:-.03em;font-weight:800}
+.wrap{max-width:1200px;margin:0 auto;padding:0 22px 100px}
+header.top{padding:54px 0 28px;border-bottom:1px solid #1b2536}
+h1{font-size:clamp(32px,5.4vw,60px);line-height:1.0;letter-spacing:-.035em;font-weight:800}
 h1 em{color:#4ea1ff;font-style:normal}
-.sub{margin-top:16px;font-size:17px;color:#9fb0c8;max-width:760px}
+.sub{margin-top:16px;font-size:17px;color:#9fb0c8;max-width:820px}
 .rule{margin:22px 0 0;padding:16px 18px;background:#0c1526;border:1px solid #22385c;border-radius:12px;font-size:15px;color:#cfe0f7}
 .rule b{color:#7dbcff}
-h2{margin:58px 0 6px;font-size:clamp(22px,3vw,34px);letter-spacing:-.02em;font-weight:800}
-h2 span{color:#5f7ba8}
-.cnt{color:#8aa0bd;font-size:14px;margin-bottom:22px}
+h2{margin:64px 0 4px;font-size:clamp(26px,3.6vw,40px);letter-spacing:-.025em;font-weight:800}
+.cnt{color:#8aa0bd;font-size:14px;margin-bottom:20px}
+.el{background:linear-gradient(180deg,#0b1424,#080f1c);border:1px solid #24384f;border-radius:16px;padding:22px 22px 20px;margin:14px 0}
+.chip{display:inline-block;font:11.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.06em;color:#8fd3ff;background:#0d2237;border:1px solid #1d4a6b;padding:7px 10px;border-radius:999px}
+.el h3{margin-top:13px;font-size:clamp(20px,2.5vw,30px);line-height:1.12;letter-spacing:-.02em;font-weight:800}
+.el p{margin-top:6px;color:#93a7c2;font-size:14.5px}
 .sc{background:#0a1120;border:1px solid #1a2740;border-radius:14px;padding:18px 20px;margin:12px 0}
 .sc header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border:0;padding:0}
 .n{font-size:26px;font-weight:800;color:#4ea1ff;min-width:42px}
-.tc{font:13px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8fa6c4;background:#0f1a2e;border:1px solid #1e2f4d;padding:6px 9px;border-radius:7px;white-space:nowrap}
+.tc{font:13px/1 ui-monospace,Menlo,monospace;color:#8fa6c4;background:#0f1a2e;border:1px solid #1e2f4d;padding:6px 9px;border-radius:7px;white-space:nowrap}
 .sc h3{font-size:17px;font-weight:650;letter-spacing:-.01em;flex:1 1 320px;min-width:0}
 .meta,.do{margin-top:12px;font-size:14.5px;color:#b9c9e0}
 .k{display:inline-block;min-width:78px;color:#6f86a6;font-size:12px;text-transform:uppercase;letter-spacing:.09em;font-weight:700;margin-right:8px}
-.btns{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
-.b{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:13.5px;font-weight:700;padding:11px 15px;border-radius:10px;border:1px solid transparent;transition:transform .12s ease,filter .12s ease}
-.b:hover{transform:translateY(-1px);filter:brightness(1.12)}
+.btns{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}
+.b{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:13.5px;font-weight:700;padding:11px 15px;border-radius:10px;border:1px solid transparent;transition:transform .12s,filter .12s}
+.b:hover{transform:translateY(-1px);filter:brightness(1.14)}
 .b em{font-style:normal;font-weight:500;opacity:.72;font-size:12.5px}
 .mp4{background:linear-gradient(180deg,#2f7fff,#1b5fd8);color:#fff}
 .png{background:#13233c;color:#cfe0f7;border-color:#27405f}
 .src{background:#0f2a1c;color:#b8f0cf;border-color:#1f5238}
-.none{font-size:13.5px;color:#7f93ae;font-style:italic;padding:9px 0}
-footer{margin-top:70px;padding-top:24px;border-top:1px solid #1b2536;color:#8aa0bd;font-size:14px}
+.none{font-size:13.5px;color:#8298b4;font-style:italic;padding:9px 0}
+.none b{color:#cfe0f7;font-style:normal}
+footer{margin-top:76px;padding-top:24px;border-top:1px solid #1b2536;color:#8aa0bd;font-size:14px}
 footer a{color:#7dbcff}
-</style></head><body><div class="wrap">
-<header class="top">
-<h1>Editor pack — <em>every line item is a real file</em></h1>
-<p class="sub">Courtney V16 and Julie V23. 64 scenes. Every scene below has its own MP4 cut to the exact scene timecode, its own PNG still, and a one-click download of the original source file. No viewer pages, no permission screens, no logins.</p>
-<div class="rule"><b>How to use:</b> SCENE MP4 = that exact scene as it is in the current film, so you see precisely what to match. STILL PNG = single frame of that scene. SOURCE = the original camera or b-roll file that scene was built from, downloads immediately as a file. &nbsp;<b>Rules:</b> same-length swaps only, never re-time the voice-over or the music, export 3840&times;2160 and 1920&times;1080, H.264, AAC 48&nbsp;kHz stereo, about &minus;13&nbsp;LUFS, faststart.</div>
-</header>
-<h2>Courtney V16</h2><p class="cnt">40 scenes &middot; runtime 95.104 s &middot; 8 on-camera syncs</p>
-<article class="sc">
-<header><span class="n">01</span><span class="tc">0:00 - 0:02.5</span><h3>LLA logo opening</h3></header>
-<div class="meta"><span class="k">Footage</span>LLA Outro Card (same brand animation, used as opening)</div>
+@media(max-width:620px){.b{font-size:12.5px;padding:10px 12px}.b em{display:none}}</style></head><body><div class="wrap">
+<header class="top"><h1>Editor pack — <em>every scene and every element is a real file</em></h1>
+<p class="sub">Courtney V16 and Julie V23. 64 scenes, 36 graphic elements, 236 downloadable files hosted on this page. Every button downloads an MP4 or a PNG straight to disk. No viewer pages, no logins, no permissions.</p>
+<div class="rule"><b>What each button gives you:</b> ELEMENT / SCENE MP4 = that exact piece cut from the current film. STILL PNG = one frame. FRAME A / B / C = start, middle and end frames of that element, so you can rebuild it at 4K pixel-for-pixel. SOURCE = the original camera or b-roll file. &nbsp;<b>Export spec:</b> 3840&times;2160 and 1920&times;1080, H.264, AAC 48&nbsp;kHz stereo, about &minus;13&nbsp;LUFS, faststart. Same-length swaps only, never re-time the voice-over or the music.</div></header>
+<h2>Graphics, logos, intros, outros, lower thirds</h2><p class="cnt">36 elements &middot; each with MP4, still PNG and three reference frames</p>
+<article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 01 · 0:00 - 0:02.5</span>
+<h3>LLA LOGO OPENING</h3><p>Brand ident / logo animation, opens Courtney V16</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C01.mp4" download>&#11015; SCENE MP4 <em>1013.9 KB</em></a>
+<a class="b mp4" href="files/SCENE_C01.mp4" download>&#11015; ELEMENT MP4 <em>1013.9 KB</em></a>
 <a class="b png" href="files/STILL_C01.png" download>&#11015; STILL PNG <em>462.5 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1l-Bri8wcQVrUu-zypNlVmWFRVgrAFbzG&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 &middot; 1.5 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Keep brand ident clean.</div>
-</article><article class="sc">
-<header><span class="n">02</span><span class="tc">0:02.5 - 0:05</span><h3>Eye macro hook</h3></header>
-<div class="meta"><span class="k">Footage</span>Opening shot: OPEN BEFORE COURTNEY</div>
+<a class="b png" href="files/ELEM_C01_A.png" download>&#11015; FRAME A PNG <em>81.9 KB</em></a><a class="b png" href="files/ELEM_C01_B.png" download>&#11015; FRAME B PNG <em>462.5 KB</em></a><a class="b png" href="files/ELEM_C01_C.png" download>&#11015; FRAME C PNG <em>468.2 KB</em></a><a class="b src" href="src/LLAOutroCard.mp4" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 · 1.5 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 07 · 0:17.4 - 0:20.9</span>
+<h3>CARD — “Your direct path to a longer, better life.”</h3><p>Full-frame title card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C02.mp4" download>&#11015; SCENE MP4 <em>2.2 MB</em></a>
-<a class="b png" href="files/STILL_C02.png" download>&#11015; STILL PNG <em>1.2 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1DWP_BOLbvYfkCU_q-fMWwaKQc5TkkP10&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>OPENBEFORECORTNEY &middot; 41.1 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Fast, tight, premium. This is the hook.</div>
-</article><article class="sc">
-<header><span class="n">03</span><span class="tc">0:05 - 0:09.3</span><h3>Courtney on camera. VO: trying to fix your health. White box caption removed, lower third kept.</h3></header>
-<div class="meta"><span class="k">Footage</span>Courtney raw front camera, 1.25 GB</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C03.mp4" download>&#11015; SCENE MP4 <em>3.3 MB</em></a>
-<a class="b png" href="files/STILL_C03.png" download>&#11015; STILL PNG <em>1.4 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 &middot; 1.2 GB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>LIP SYNC BROKEN FROM HERE. Fix with the raw take, or use repair clip S1.</div>
-</article><article class="sc">
-<header><span class="n">04</span><span class="tc">0:09.3 - 0:12.5</span><h3>Influencer montage. Box caption removed.</h3></header>
-<div class="meta"><span class="k">Footage</span>Take from the current film</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C04.mp4" download>&#11015; SCENE MP4 <em>3.1 MB</em></a>
-<a class="b png" href="files/STILL_C04.png" download>&#11015; STILL PNG <em>1.3 MB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Fast montage, no default transitions.</div>
-</article><article class="sc">
-<header><span class="n">05</span><span class="tc">0:12.5 - 0:15.5</span><h3>Doom-scroll b-roll</h3></header>
-<div class="meta"><span class="k">Footage</span>Take from the current film</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C05.mp4" download>&#11015; SCENE MP4 <em>2.1 MB</em></a>
-<a class="b png" href="files/STILL_C05.png" download>&#11015; STILL PNG <em>1.2 MB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Keep it short and nervous, then release into her.</div>
-</article><article class="sc">
-<header><span class="n">06</span><span class="tc">0:15.5 - 0:17.4</span><h3>Courtney on camera</h3></header>
-<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C06.mp4" download>&#11015; SCENE MP4 <em>1.4 MB</em></a>
-<a class="b png" href="files/STILL_C06.png" download>&#11015; STILL PNG <em>1.5 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 &middot; 1.2 GB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Check lip sync frame by frame. Repair clip S2 if needed.</div>
-</article><article class="sc">
-<header><span class="n">07</span><span class="tc">0:17.4 - 0:20.9</span><h3>CARD: Your direct path to a longer, better life.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C07.mp4" download>&#11015; SCENE MP4 <em>125.8 KB</em></a>
+<a class="b mp4" href="files/SCENE_C07.mp4" download>&#11015; ELEMENT MP4 <em>125.8 KB</em></a>
 <a class="b png" href="files/STILL_C07.png" download>&#11015; STILL PNG <em>157.4 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Held until she speaks.</div>
-</article><article class="sc">
-<header><span class="n">08</span><span class="tc">0:20.9 - 0:27.7</span><h3>Courtney on camera. Original take planted on the voice, waveform-anchored.</h3></header>
-<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<a class="b png" href="files/ELEM_C07_A.png" download>&#11015; FRAME A PNG <em>130.3 KB</em></a><a class="b png" href="files/ELEM_C07_B.png" download>&#11015; FRAME B PNG <em>157.4 KB</em></a><a class="b png" href="files/ELEM_C07_C.png" download>&#11015; FRAME C PNG <em>157.6 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 09 · 0:27.7 - 0:29.2</span>
+<h3>CARD — “Your own blueprint.”</h3><p>Full-frame title card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C08.mp4" download>&#11015; SCENE MP4 <em>4.9 MB</em></a>
-<a class="b png" href="files/STILL_C08.png" download>&#11015; STILL PNG <em>1.6 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 &middot; 1.2 GB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>This is the main sync repair. Anchor to the waveform exactly.</div>
-</article><article class="sc">
-<header><span class="n">09</span><span class="tc">0:27.7 - 0:29.2</span><h3>CARD: Your own blueprint. Replaces the road shot.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C09.mp4" download>&#11015; SCENE MP4 <em>639.4 KB</em></a>
+<a class="b mp4" href="files/SCENE_C09.mp4" download>&#11015; ELEMENT MP4 <em>639.4 KB</em></a>
 <a class="b png" href="files/STILL_C09.png" download>&#11015; STILL PNG <em>342.9 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>The road shot must not appear.</div>
-</article><article class="sc">
-<header><span class="n">10</span><span class="tc">0:29.2 - 0:33</span><h3>Courtney on camera. Whole-path box removed.</h3></header>
-<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<a class="b png" href="files/ELEM_C09_A.png" download>&#11015; FRAME A PNG <em>1.3 MB</em></a><a class="b png" href="files/ELEM_C09_B.png" download>&#11015; FRAME B PNG <em>342.9 KB</em></a><a class="b png" href="files/ELEM_C09_C.png" download>&#11015; FRAME C PNG <em>348.2 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 11 · 0:33 - 0:34</span>
+<h3>CARD — “Master the six pillars.”</h3><p>Full-frame title card, appears once only</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C10.mp4" download>&#11015; SCENE MP4 <em>2.7 MB</em></a>
-<a class="b png" href="files/STILL_C10.png" download>&#11015; STILL PNG <em>1.5 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 &middot; 1.2 GB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>No box caption here.</div>
-</article><article class="sc">
-<header><span class="n">11</span><span class="tc">0:33 - 0:34</span><h3>CARD: Master the six pillars. APPEARS ONCE ONLY.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C11.mp4" download>&#11015; SCENE MP4 <em>376.2 KB</em></a>
+<a class="b mp4" href="files/SCENE_C11.mp4" download>&#11015; ELEMENT MP4 <em>376.2 KB</em></a>
 <a class="b png" href="files/STILL_C11.png" download>&#11015; STILL PNG <em>253.6 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>DELETE THE DUPLICATE AT 0:44. This card appears one time.</div>
-</article><article class="sc">
-<header><span class="n">12</span><span class="tc">0:34 - 0:35.5</span><h3>Pillar intro: your numbers. CGM press.</h3></header>
-<div class="meta"><span class="k">Footage</span>CGM footage</div>
+<a class="b png" href="files/ELEM_C11_A.png" download>&#11015; FRAME A PNG <em>238.1 KB</em></a><a class="b png" href="files/ELEM_C11_B.png" download>&#11015; FRAME B PNG <em>253.6 KB</em></a><a class="b png" href="files/ELEM_C11_C.png" download>&#11015; FRAME C PNG <em>1.2 MB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 18 · 0:42.3 - 0:44.4</span>
+<h3>GRAPH — Know your numbers</h3><p>Animated data graphic, pillar 6</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C12.mp4" download>&#11015; SCENE MP4 <em>874.0 KB</em></a>
-<a class="b png" href="files/STILL_C12.png" download>&#11015; STILL PNG <em>1.4 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=10Y2JmVO0I3x1A8A8AUWXEzmPb3-xTqtx&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 &middot; 14.9 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Tight press on the sensor.</div>
-</article><article class="sc">
-<header><span class="n">13</span><span class="tc">0:35.5 - 0:37</span><h3>PILLAR 1: Nutrition</h3></header>
-<div class="meta"><span class="k">Footage</span>FOOD1 (full original: avocado shake 4K)</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C13.mp4" download>&#11015; SCENE MP4 <em>1.8 MB</em></a>
-<a class="b png" href="files/STILL_C13.png" download>&#11015; STILL PNG <em>1.5 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=159IqclHLfIaGvZmDGUgFVZQyYi6Jb0NF&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>FOOD1 &middot; 58.2 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1ISwa_tY02j7Qf-vFC-gQOJ1f-QBc9v9T&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>423878_Avocado_Shake_Smoothie_Almonds_By_Pha &middot; 58.2 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Cut exactly on the word Nutrition.</div>
-</article><article class="sc">
-<header><span class="n">14</span><span class="tc">0:37 - 0:38.2</span><h3>PILLAR 2: Sleep</h3></header>
-<div class="meta"><span class="k">Footage</span>No sleep clip in Drive. Take the sleep shot from the Master Six Pillars video on longevitylifeacademy.com</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C14.mp4" download>&#11015; SCENE MP4 <em>824.6 KB</em></a>
-<a class="b png" href="files/STILL_C14.png" download>&#11015; STILL PNG <em>1.3 MB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Cut exactly on the word Sleep.</div>
-</article><article class="sc">
-<header><span class="n">15</span><span class="tc">0:38.2 - 0:39</span><h3>PILLAR 3: Movement</h3></header>
-<div class="meta"><span class="k">Footage</span>SPORT (also SPORT2, SPORT3, stretching 4K)</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C15.mp4" download>&#11015; SCENE MP4 <em>768.4 KB</em></a>
-<a class="b png" href="files/STILL_C15.png" download>&#11015; STILL PNG <em>505.5 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1t88MikUhqlNildJdW5TVmO65To94ydi2&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>SPORT.mp4 &middot; 37.3 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1g-mKR1qAwvlCHVpwvPIoEMgbS-rPrxEn&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>402510_EquipmentStretchingTrainingExercise_B &middot; 77.6 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Cut exactly on the word Movement. Use this clip only here.</div>
-</article><article class="sc">
-<header><span class="n">16</span><span class="tc">0:39 - 0:41.2</span><h3>PILLAR 4: Supplementation</h3></header>
-<div class="meta"><span class="k">Footage</span>Pills 4K</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C16.mp4" download>&#11015; SCENE MP4 <em>1.6 MB</em></a>
-<a class="b png" href="files/STILL_C16.png" download>&#11015; STILL PNG <em>974.7 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1BjZEiVSh1QtwsDwsZL45OEVkHAWZMIn8&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>6308053_Pills_Drug_Futuristic_Light_By_Phong &middot; 65.3 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Cut exactly on the word Supplementation.</div>
-</article><article class="sc">
-<header><span class="n">17</span><span class="tc">0:41.2 - 0:42.3</span><h3>PILLAR 5: Protect your heart</h3></header>
-<div class="meta"><span class="k">Footage</span>FOOD3</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C17.mp4" download>&#11015; SCENE MP4 <em>1.1 MB</em></a>
-<a class="b png" href="files/STILL_C17.png" download>&#11015; STILL PNG <em>966.6 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1Y6qdEgEF6gxaKb3CjrI7B6Z2Gf0nbqWp&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>FOOD3 &middot; 61.8 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Cut exactly on the words Protect your heart.</div>
-</article><article class="sc">
-<header><span class="n">18</span><span class="tc">0:42.3 - 0:44.4</span><h3>PILLAR 6: Know your numbers graph. B-roll must not start early.</h3></header>
-<div class="meta"><span class="k">Footage</span>Graph is inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C18.mp4" download>&#11015; SCENE MP4 <em>1.9 MB</em></a>
+<a class="b mp4" href="files/SCENE_C18.mp4" download>&#11015; ELEMENT MP4 <em>1.9 MB</em></a>
 <a class="b png" href="files/STILL_C18.png" download>&#11015; STILL PNG <em>732.0 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>B-roll starts on the word, not before.</div>
-</article><article class="sc">
-<header><span class="n">19</span><span class="tc">0:44.4 - 0:49.4</span><h3>Courtney on camera. Real take restored, sync exact.</h3></header>
-<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<a class="b png" href="files/ELEM_C18_A.png" download>&#11015; FRAME A PNG <em>1.6 MB</em></a><a class="b png" href="files/ELEM_C18_B.png" download>&#11015; FRAME B PNG <em>732.0 KB</em></a><a class="b png" href="files/ELEM_C18_C.png" download>&#11015; FRAME C PNG <em>687.5 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 25 · 0:59.5 - 1:02.5</span>
+<h3>CARD — “Five habits by age 40. +14 extra years.”</h3><p>Stat card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C19.mp4" download>&#11015; SCENE MP4 <em>3.7 MB</em></a>
-<a class="b png" href="files/STILL_C19.png" download>&#11015; STILL PNG <em>1.7 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 &middot; 1.2 GB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Sync must be exact here. Repair clip S3 if needed.</div>
-</article><article class="sc">
-<header><span class="n">20</span><span class="tc">0:49.4 - 0:52.5</span><h3>Courtney on camera. Not-opinions box removed.</h3></header>
-<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C20.mp4" download>&#11015; SCENE MP4 <em>2.0 MB</em></a>
-<a class="b png" href="files/STILL_C20.png" download>&#11015; STILL PNG <em>1.8 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 &middot; 1.2 GB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>No box caption.</div>
-</article><article class="sc">
-<header><span class="n">21</span><span class="tc">0:52.7 - 0:54</span><h3>Green pipette, slow. Only after Courtney says it. Caption removed.</h3></header>
-<div class="meta"><span class="k">Footage</span>Take from the current film. NOTE: all other green lab footage is deleted, this single shot stays only if the board keeps it.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C21.mp4" download>&#11015; SCENE MP4 <em>534.1 KB</em></a>
-<a class="b png" href="files/STILL_C21.png" download>&#11015; STILL PNG <em>493.3 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Delete every other green micro-lab shot in the film.</div>
-</article><article class="sc">
-<header><span class="n">22</span><span class="tc">0:54 - 0:56</span><h3>Courtney: Harvard line, ON CAMERA FIRST.</h3></header>
-<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C22.mp4" download>&#11015; SCENE MP4 <em>1.5 MB</em></a>
-<a class="b png" href="files/STILL_C22.png" download>&#11015; STILL PNG <em>1.6 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 &middot; 1.2 GB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>She says the line first, THEN the graph. Order is wrong in the current film.</div>
-</article><article class="sc">
-<header><span class="n">23</span><span class="tc">0:56 - 0:58.2</span><h3>Food flatlay. Clean, box removed.</h3></header>
-<div class="meta"><span class="k">Footage</span>FOOD3 (or avocado 4K)</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C23.mp4" download>&#11015; SCENE MP4 <em>2.2 MB</em></a>
-<a class="b png" href="files/STILL_C23.png" download>&#11015; STILL PNG <em>2.3 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1Y6qdEgEF6gxaKb3CjrI7B6Z2Gf0nbqWp&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>FOOD3 &middot; 61.8 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1ISwa_tY02j7Qf-vFC-gQOJ1f-QBc9v9T&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>423878_Avocado_Shake_Smoothie_Almonds_By_Pha &middot; 58.2 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Clean, no caption box.</div>
-</article><article class="sc">
-<header><span class="n">24</span><span class="tc">0:58.2 - 0:59.5</span><h3>Courtney: five of these very habits</h3></header>
-<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C24.mp4" download>&#11015; SCENE MP4 <em>927.8 KB</em></a>
-<a class="b png" href="files/STILL_C24.png" download>&#11015; STILL PNG <em>1.4 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 &middot; 1.2 GB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Repair clip S4 if sync drifts.</div>
-</article><article class="sc">
-<header><span class="n">25</span><span class="tc">0:59.5 - 1:02.5</span><h3>CARD: Five habits by age 40. +14 extra years.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C25.mp4" download>&#11015; SCENE MP4 <em>1.1 MB</em></a>
+<a class="b mp4" href="files/SCENE_C25.mp4" download>&#11015; ELEMENT MP4 <em>1.1 MB</em></a>
 <a class="b png" href="files/STILL_C25.png" download>&#11015; STILL PNG <em>368.5 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>This card goes EARLY, as here. Not near the end.</div>
-</article><article class="sc">
-<header><span class="n">26</span><span class="tc">1:02.5 - 1:04.7</span><h3>CARD: 18 Live Session Course.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<a class="b png" href="files/ELEM_C25_A.png" download>&#11015; FRAME A PNG <em>1.2 MB</em></a><a class="b png" href="files/ELEM_C25_B.png" download>&#11015; FRAME B PNG <em>368.5 KB</em></a><a class="b png" href="files/ELEM_C25_C.png" download>&#11015; FRAME C PNG <em>302.7 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 26 · 1:02.5 - 1:04.7</span>
+<h3>CARD — “18 Live Session Course.”</h3><p>Offer card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C26.mp4" download>&#11015; SCENE MP4 <em>794.3 KB</em></a>
+<a class="b mp4" href="files/SCENE_C26.mp4" download>&#11015; ELEMENT MP4 <em>794.3 KB</em></a>
 <a class="b png" href="files/STILL_C26.png" download>&#11015; STILL PNG <em>415.9 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Clean typography, no captions on cards.</div>
-</article><article class="sc">
-<header><span class="n">27</span><span class="tc">1:04.7 - 1:06.5</span><h3>Zoom live session</h3></header>
-<div class="meta"><span class="k">Footage</span>Take from the current film</div>
+<a class="b png" href="files/ELEM_C26_A.png" download>&#11015; FRAME A PNG <em>265.0 KB</em></a><a class="b png" href="files/ELEM_C26_B.png" download>&#11015; FRAME B PNG <em>415.9 KB</em></a><a class="b png" href="files/ELEM_C26_C.png" download>&#11015; FRAME C PNG <em>839.9 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 28 · 1:06.5 - 1:08</span>
+<h3>COLLAGE — Course platform</h3><p>Device collage graphic</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C27.mp4" download>&#11015; SCENE MP4 <em>902.6 KB</em></a>
-<a class="b png" href="files/STILL_C27.png" download>&#11015; STILL PNG <em>1.5 MB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Real session, proof beat.</div>
-</article><article class="sc">
-<header><span class="n">28</span><span class="tc">1:06.5 - 1:08</span><h3>Course platform collage</h3></header>
-<div class="meta"><span class="k">Footage</span>Collage image</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C28.mp4" download>&#11015; SCENE MP4 <em>947.2 KB</em></a>
+<a class="b mp4" href="files/SCENE_C28.mp4" download>&#11015; ELEMENT MP4 <em>947.2 KB</em></a>
 <a class="b png" href="files/STILL_C28.png" download>&#11015; STILL PNG <em>1.2 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1lgYUN7dI_BVbQmk4xjZtUeELahz_TK48&amp;export=download&amp;confirm=t" download>&#11015; SOURCE PNG <em>Collage(1).png &middot; 8.3 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Slow zoom on the course material.</div>
-</article><article class="sc">
-<header><span class="n">29</span><span class="tc">1:08 - 1:09.4</span><h3>Website CGM section</h3></header>
-<div class="meta"><span class="k">Footage</span>Take from the current film. Live page: longevitylifeacademy.com</div>
+<a class="b png" href="files/ELEM_C28_A.png" download>&#11015; FRAME A PNG <em>1.1 MB</em></a><a class="b png" href="files/ELEM_C28_B.png" download>&#11015; FRAME B PNG <em>1.2 MB</em></a><a class="b png" href="files/ELEM_C28_C.png" download>&#11015; FRAME C PNG <em>1.3 MB</em></a><a class="b src" href="src/Collage_1_.png" download>&#11015; SOURCE PNG <em>Collage(1).png · 8.3 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 30 · 1:09.4 - 1:12.5</span>
+<h3>CARD — “Your biomarkers. Your data.”</h3><p>Full-frame title card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C29.mp4" download>&#11015; SCENE MP4 <em>614.8 KB</em></a>
-<a class="b png" href="files/STILL_C29.png" download>&#11015; STILL PNG <em>460.8 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Readable on mobile.</div>
-</article><article class="sc">
-<header><span class="n">30</span><span class="tc">1:09.4 - 1:12.5</span><h3>CARD: Your biomarkers. Your data.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C30.mp4" download>&#11015; SCENE MP4 <em>1.0 MB</em></a>
+<a class="b mp4" href="files/SCENE_C30.mp4" download>&#11015; ELEMENT MP4 <em>1.0 MB</em></a>
 <a class="b png" href="files/STILL_C30.png" download>&#11015; STILL PNG <em>424.8 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Order: biomarkers, data, then plan.</div>
-</article><article class="sc">
-<header><span class="n">31</span><span class="tc">1:12.5 - 1:13.9</span><h3>CGM sensor pop</h3></header>
-<div class="meta"><span class="k">Footage</span>CGM footage</div>
+<a class="b png" href="files/ELEM_C30_A.png" download>&#11015; FRAME A PNG <em>288.7 KB</em></a><a class="b png" href="files/ELEM_C30_B.png" download>&#11015; FRAME B PNG <em>424.8 KB</em></a><a class="b png" href="files/ELEM_C30_C.png" download>&#11015; FRAME C PNG <em>996.9 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 33 · 1:15 - 1:15.9</span>
+<h3>BLUEPRINT PAGE</h3><p>Screen graphic</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C31.mp4" download>&#11015; SCENE MP4 <em>718.2 KB</em></a>
-<a class="b png" href="files/STILL_C31.png" download>&#11015; STILL PNG <em>1.1 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=10Y2JmVO0I3x1A8A8AUWXEzmPb3-xTqtx&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 &middot; 14.9 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Quick, premium pop.</div>
-</article><article class="sc">
-<header><span class="n">32</span><span class="tc">1:14 - 1:15</span><h3>Protocol wheel</h3></header>
-<div class="meta"><span class="k">Footage</span>PROTOCOL2</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C32.mp4" download>&#11015; SCENE MP4 <em>522.0 KB</em></a>
-<a class="b png" href="files/STILL_C32.png" download>&#11015; STILL PNG <em>590.0 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1yCocLUMedCP09kJBKRkPx6qunrwvU8ND&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>PROTOCOL2.mp4 &middot; 10.5 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>This is the protocol beat. Comes AFTER the biomarkers b-roll.</div>
-</article><article class="sc">
-<header><span class="n">33</span><span class="tc">1:15 - 1:15.9</span><h3>Blueprint page</h3></header>
-<div class="meta"><span class="k">Footage</span>Take from the current film</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C33.mp4" download>&#11015; SCENE MP4 <em>390.5 KB</em></a>
+<a class="b mp4" href="files/SCENE_C33.mp4" download>&#11015; ELEMENT MP4 <em>390.5 KB</em></a>
 <a class="b png" href="files/STILL_C33.png" download>&#11015; STILL PNG <em>414.0 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Sharp text.</div>
-</article><article class="sc">
-<header><span class="n">34</span><span class="tc">1:15.9 - 1:17.4</span><h3>Instructors page. Straight to the close in this cut.</h3></header>
-<div class="meta"><span class="k">Footage</span>Take from the current film</div>
+<a class="b png" href="files/ELEM_C33_A.png" download>&#11015; FRAME A PNG <em>384.9 KB</em></a><a class="b png" href="files/ELEM_C33_B.png" download>&#11015; FRAME B PNG <em>414.0 KB</em></a><a class="b png" href="files/ELEM_C33_C.png" download>&#11015; FRAME C PNG <em>435.9 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 34 · 1:15.9 - 1:17.4</span>
+<h3>INSTRUCTORS PAGE</h3><p>Screen graphic</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C34.mp4" download>&#11015; SCENE MP4 <em>545.6 KB</em></a>
+<a class="b mp4" href="files/SCENE_C34.mp4" download>&#11015; ELEMENT MP4 <em>545.6 KB</em></a>
 <a class="b png" href="files/STILL_C34.png" download>&#11015; STILL PNG <em>862.9 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Names readable.</div>
-</article><article class="sc">
-<header><span class="n">35</span><span class="tc">1:17.4 - 1:20.7</span><h3>Courtney sign-off. Real take restored, native caption.</h3></header>
-<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<a class="b png" href="files/ELEM_C34_A.png" download>&#11015; FRAME A PNG <em>726.8 KB</em></a><a class="b png" href="files/ELEM_C34_B.png" download>&#11015; FRAME B PNG <em>862.9 KB</em></a><a class="b png" href="files/ELEM_C34_C.png" download>&#11015; FRAME C PNG <em>844.2 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 39 · 1:26.6 - 1:30</span>
+<h3>OUTRO — Enroll now, 4.6 on Trustpilot</h3><p>Brand outro card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C35.mp4" download>&#11015; SCENE MP4 <em>2.0 MB</em></a>
-<a class="b png" href="files/STILL_C35.png" download>&#11015; STILL PNG <em>1.6 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 &middot; 1.2 GB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Sync exact, native caption only.</div>
-</article><article class="sc">
-<header><span class="n">36</span><span class="tc">1:20.7 - 1:21.9</span><h3>Seat in light</h3></header>
-<div class="meta"><span class="k">Footage</span>Take from the current film</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C36.mp4" download>&#11015; SCENE MP4 <em>1.4 MB</em></a>
-<a class="b png" href="files/STILL_C36.png" download>&#11015; STILL PNG <em>1.5 MB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Calm, premium.</div>
-</article><article class="sc">
-<header><span class="n">37</span><span class="tc">1:21.9 - 1:24.9</span><h3>CGM arm b-roll</h3></header>
-<div class="meta"><span class="k">Footage</span>CGM footage</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C37.mp4" download>&#11015; SCENE MP4 <em>2.8 MB</em></a>
-<a class="b png" href="files/STILL_C37.png" download>&#11015; STILL PNG <em>1.2 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=10Y2JmVO0I3x1A8A8AUWXEzmPb3-xTqtx&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 &middot; 14.9 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Hold, do not cut early.</div>
-</article><article class="sc">
-<header><span class="n">38</span><span class="tc">1:24.9 - 1:26.6</span><h3>Zoom laptop scene</h3></header>
-<div class="meta"><span class="k">Footage</span>Take from the current film</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C38.mp4" download>&#11015; SCENE MP4 <em>1.5 MB</em></a>
-<a class="b png" href="files/STILL_C38.png" download>&#11015; STILL PNG <em>1.1 MB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Clean, no jitter.</div>
-</article><article class="sc">
-<header><span class="n">39</span><span class="tc">1:26.6 - 1:30</span><h3>OUTRO: Enroll now, 4.6 on Trustpilot</h3></header>
-<div class="meta"><span class="k">Footage</span>LLA Outro Card</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_C39.mp4" download>&#11015; SCENE MP4 <em>1.1 MB</em></a>
+<a class="b mp4" href="files/SCENE_C39.mp4" download>&#11015; ELEMENT MP4 <em>1.1 MB</em></a>
 <a class="b png" href="files/STILL_C39.png" download>&#11015; STILL PNG <em>326.2 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1l-Bri8wcQVrUu-zypNlVmWFRVgrAFbzG&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 &middot; 1.5 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Stars and CTA readable on mobile.</div>
-</article><article class="sc">
-<header><span class="n">40</span><span class="tc">1:30 - 1:35.1</span><h3>END CARD: dancing man. Silent tail.</h3></header>
-<div class="meta"><span class="k">Footage</span>END FAST LAST (or OUTRO Rosen)</div>
+<a class="b png" href="files/ELEM_C39_A.png" download>&#11015; FRAME A PNG <em>941.9 KB</em></a><a class="b png" href="files/ELEM_C39_B.png" download>&#11015; FRAME B PNG <em>326.2 KB</em></a><a class="b png" href="files/ELEM_C39_C.png" download>&#11015; FRAME C PNG <em>390.9 KB</em></a><a class="b src" href="src/LLAOutroCard.mp4" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 · 1.5 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 40 · 1:30 - 1:35.1</span>
+<h3>END CARD — dancing man, silent tail</h3><p>Final end card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_C40.mp4" download>&#11015; SCENE MP4 <em>5.8 MB</em></a>
+<a class="b mp4" href="files/SCENE_C40.mp4" download>&#11015; ELEMENT MP4 <em>5.8 MB</em></a>
 <a class="b png" href="files/STILL_C40.png" download>&#11015; STILL PNG <em>437.6 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1sqkyhqKnlhJ5ET7XiaTZEFobT7ZubJvt&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>ENDFASTLAST &middot; 26.1 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1rIY8YgZyWuoq6k379JSRlOuyVxgqmEOb&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>OUTRORosen.mp4 &middot; 20.1 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Dancing man is the very last thing. Silent.</div>
-</article>
-<h2>Julie V23</h2><p class="cnt">24 scenes &middot; runtime 97.200 s &middot; 5 on-camera syncs</p>
-<article class="sc">
-<header><span class="n">01</span><span class="tc">0:00.00 - 0:03.47 · 3.47s</span><h3>OPEN - LLA brand ident. Score enters low and wide.</h3></header>
-<div class="meta"><span class="k">Footage</span>LLA Outro Card (brand animation)</div>
+<a class="b png" href="files/ELEM_C40_A.png" download>&#11015; FRAME A PNG <em>302.3 KB</em></a><a class="b png" href="files/ELEM_C40_B.png" download>&#11015; FRAME B PNG <em>437.6 KB</em></a><a class="b png" href="files/ELEM_C40_C.png" download>&#11015; FRAME C PNG <em>577.1 KB</em></a><a class="b src" href="src/ENDFASTLAST.mp4" download>&#11015; SOURCE MP4 <em>ENDFASTLAST · 26.1 MB · on this site</em></a><a class="b src" href="src/OUTRORosen.mp4" download>&#11015; SOURCE MP4 <em>OUTRORosen.mp4 · 20.1 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 03 · 0:05 - 0:09.3</span>
+<h3>LOWER THIRD / CAPTION — white box beside Courtney</h3><p>On-camera caption treatment</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J01.mp4" download>&#11015; SCENE MP4 <em>1.5 MB</em></a>
+<a class="b mp4" href="files/SCENE_C03.mp4" download>&#11015; ELEMENT MP4 <em>3.3 MB</em></a>
+<a class="b png" href="files/STILL_C03.png" download>&#11015; STILL PNG <em>1.4 MB</em></a>
+<a class="b png" href="files/ELEM_C03_A.png" download>&#11015; FRAME A PNG <em>1.3 MB</em></a><a class="b png" href="files/ELEM_C03_B.png" download>&#11015; FRAME B PNG <em>1.4 MB</em></a><a class="b png" href="files/ELEM_C03_C.png" download>&#11015; FRAME C PNG <em>1.5 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 22 · 0:54 - 0:56</span>
+<h3>LOWER THIRD — Harvard line</h3><p>On-camera caption treatment</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_C22.mp4" download>&#11015; ELEMENT MP4 <em>1.5 MB</em></a>
+<a class="b png" href="files/STILL_C22.png" download>&#11015; STILL PNG <em>1.6 MB</em></a>
+<a class="b png" href="files/ELEM_C22_A.png" download>&#11015; FRAME A PNG <em>1.4 MB</em></a><a class="b png" href="files/ELEM_C22_B.png" download>&#11015; FRAME B PNG <em>1.6 MB</em></a><a class="b png" href="files/ELEM_C22_C.png" download>&#11015; FRAME C PNG <em>1.5 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 35 · 1:17.4 - 1:20.7</span>
+<h3>LOWER THIRD — Courtney sign-off, native caption</h3><p>On-camera caption treatment</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_C35.mp4" download>&#11015; ELEMENT MP4 <em>2.0 MB</em></a>
+<a class="b png" href="files/STILL_C35.png" download>&#11015; STILL PNG <em>1.6 MB</em></a>
+<a class="b png" href="files/ELEM_C35_A.png" download>&#11015; FRAME A PNG <em>1.3 MB</em></a><a class="b png" href="files/ELEM_C35_B.png" download>&#11015; FRAME B PNG <em>1.6 MB</em></a><a class="b png" href="files/ELEM_C35_C.png" download>&#11015; FRAME C PNG <em>1.6 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 01 · 0:00.00 - 0:03.47</span>
+<h3>LLA BRAND IDENT — Julie open</h3><p>Brand ident / logo animation</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_J01.mp4" download>&#11015; ELEMENT MP4 <em>1.5 MB</em></a>
 <a class="b png" href="files/STILL_J01.png" download>&#11015; STILL PNG <em>483.7 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1l-Bri8wcQVrUu-zypNlVmWFRVgrAFbzG&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 &middot; 1.5 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Keep as is. Do not change the brand ident.</div>
-</article><article class="sc">
-<header><span class="n">02</span><span class="tc">0:02.92 - 0:07.92 · 5.00s</span><h3>IDENTITY - banner card, larger hi-res LLA logo. Text: 2nd Slowest-Aging Person on Earth.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card is inside the current film. Re-make it at 4K, same layout, bigger logo.</div>
+<a class="b png" href="files/ELEM_J01_A.png" download>&#11015; FRAME A PNG <em>97.2 KB</em></a><a class="b png" href="files/ELEM_J01_B.png" download>&#11015; FRAME B PNG <em>483.7 KB</em></a><a class="b png" href="files/ELEM_J01_C.png" download>&#11015; FRAME C PNG <em>633.1 KB</em></a><a class="b src" href="src/LLAOutroCard.mp4" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 · 1.5 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 02 · 0:02.92 - 0:07.92</span>
+<h3>BANNER CARD — “2nd Slowest-Aging …”, hi-res LLA logo</h3><p>Identity banner card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J02.mp4" download>&#11015; SCENE MP4 <em>1.8 MB</em></a>
+<a class="b mp4" href="files/SCENE_J02.mp4" download>&#11015; ELEMENT MP4 <em>1.8 MB</em></a>
 <a class="b png" href="files/STILL_J02.png" download>&#11015; STILL PNG <em>1.1 MB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Export the card at 3840x2160. Text must not touch the edges.</div>
-</article><article class="sc">
-<header><span class="n">03</span><span class="tc">0:07.37 - 0:12.13 · 4.77s</span><h3>HOOK - Julie on camera. Black box caption beside her: SLOWER THAN OTHERS.</h3></header>
-<div class="meta"><span class="k">Footage</span>Julie raw camera, 929 MB</div>
+<a class="b png" href="files/ELEM_J02_A.png" download>&#11015; FRAME A PNG <em>402.2 KB</em></a><a class="b png" href="files/ELEM_J02_B.png" download>&#11015; FRAME B PNG <em>1.1 MB</em></a><a class="b png" href="files/ELEM_J02_C.png" download>&#11015; FRAME C PNG <em>862.2 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 05 · 0:19.55 - 0:24.15</span>
+<h3>CARD — “Slow your pace of aging.”</h3><p>Centered card, logo on top</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J03.mp4" download>&#11015; SCENE MP4 <em>2.6 MB</em></a>
-<a class="b png" href="files/STILL_J03.png" download>&#11015; STILL PNG <em>1.0 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_om &middot; 929.4 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Use the raw take. Keep the black box caption clean and readable on mobile.</div>
-</article><article class="sc">
-<header><span class="n">04</span><span class="tc">0:12.03 - 0:20.10 · 8.07s</span><h3>MECHANISM - the willpower myth. Floating lines: WILLPOWER RUNS OUT / IT&amp;#x27;S A TANK. IT EMPTIES.</h3></header>
-<div class="meta"><span class="k">Footage</span>Julie raw camera</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J04.mp4" download>&#11015; SCENE MP4 <em>5.4 MB</em></a>
-<a class="b png" href="files/STILL_J04.png" download>&#11015; STILL PNG <em>1.3 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_om &middot; 929.4 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Meta-style floating type. No default software animation.</div>
-</article><article class="sc">
-<header><span class="n">05</span><span class="tc">0:19.55 - 0:24.15 · 4.60s</span><h3>CARD - Slow your pace of aging. Centered, logo on top.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card is inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J05.mp4" download>&#11015; SCENE MP4 <em>1.1 MB</em></a>
+<a class="b mp4" href="files/SCENE_J05.mp4" download>&#11015; ELEMENT MP4 <em>1.1 MB</em></a>
 <a class="b png" href="files/STILL_J05.png" download>&#11015; STILL PNG <em>359.0 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Centered card, Card-9 style.</div>
-</article><article class="sc">
-<header><span class="n">06</span><span class="tc">0:23.60 - 0:27.20 · 3.60s</span><h3>CHART - one calendar year: 12 months typical vs about 8 months for Julie. Ticking SFX under it.</h3></header>
-<div class="meta"><span class="k">Footage</span>Chart is inside the current film. Re-make at 4K.</div>
+<a class="b png" href="files/ELEM_J05_A.png" download>&#11015; FRAME A PNG <em>865.3 KB</em></a><a class="b png" href="files/ELEM_J05_B.png" download>&#11015; FRAME B PNG <em>359.0 KB</em></a><a class="b png" href="files/ELEM_J05_C.png" download>&#11015; FRAME C PNG <em>274.7 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 06 · 0:23.60 - 0:27.20</span>
+<h3>CHART — 12 months vs ~8 months</h3><p>Animated data chart</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J06.mp4" download>&#11015; SCENE MP4 <em>1.0 MB</em></a>
+<a class="b mp4" href="files/SCENE_J06.mp4" download>&#11015; ELEMENT MP4 <em>1.0 MB</em></a>
 <a class="b png" href="files/STILL_J06.png" download>&#11015; STILL PNG <em>313.2 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Keep the tick sound. Chart must be sharp, not upscaled.</div>
-</article><article class="sc">
-<header><span class="n">07</span><span class="tc">0:26.65 - 0:29.45 · 2.80s</span><h3>B-ROLL - macro clock, the original clip.</h3></header>
-<div class="meta"><span class="k">Footage</span>Full clock footage is inside the current film. If you need more length, extend from the second camera raw.</div>
+<a class="b png" href="files/ELEM_J06_A.png" download>&#11015; FRAME A PNG <em>376.4 KB</em></a><a class="b png" href="files/ELEM_J06_B.png" download>&#11015; FRAME B PNG <em>313.2 KB</em></a><a class="b png" href="files/ELEM_J06_C.png" download>&#11015; FRAME C PNG <em>666.9 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 10 · 0:44.55 - 0:49.15</span>
+<h3>CARD — “Learn longevity from the world’s #2 slowest ager.”</h3><p>Full-frame card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J07.mp4" download>&#11015; SCENE MP4 <em>1.6 MB</em></a>
-<a class="b png" href="files/STILL_J07.png" download>&#11015; STILL PNG <em>780.7 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Restore the original clip exactly. No speed change.</div>
-</article><article class="sc">
-<header><span class="n">08</span><span class="tc">0:29.03 - 0:41.00 · 11.97s</span><h3>CREDIBILITY - number two in the world for slowest aging, working mother, ordinary budget.</h3></header>
-<div class="meta"><span class="k">Footage</span>Julie raw camera</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J08.mp4" download>&#11015; SCENE MP4 <em>5.9 MB</em></a>
-<a class="b png" href="files/STILL_J08.png" download>&#11015; STILL PNG <em>995.9 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_om &middot; 929.4 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Large captions removed. Trim to the core proof only.</div>
-</article><article class="sc">
-<header><span class="n">09</span><span class="tc">0:40.90 - 0:45.10 · 4.20s</span><h3>METHOD - Sleep. Food. Movement. One matching b-roll per word.</h3></header>
-<div class="meta"><span class="k">Footage</span>Sleep: take from the Master Six Pillars video on longevitylifeacademy.com. Food: FOOD1. Movement: SPORT.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J09.mp4" download>&#11015; SCENE MP4 <em>3.4 MB</em></a>
-<a class="b png" href="files/STILL_J09.png" download>&#11015; STILL PNG <em>905.4 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=159IqclHLfIaGvZmDGUgFVZQyYi6Jb0NF&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>FOOD1 &middot; 58.2 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1t88MikUhqlNildJdW5TVmO65To94ydi2&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>SPORT.mp4 &middot; 37.3 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Three b-rolls, one per spoken word, cut exactly on the word.</div>
-</article><article class="sc">
-<header><span class="n">10</span><span class="tc">0:44.55 - 0:49.15 · 4.60s</span><h3>CARD - Learn longevity from the world&amp;#x27;s #2 slowest ager.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J10.mp4" download>&#11015; SCENE MP4 <em>1.5 MB</em></a>
+<a class="b mp4" href="files/SCENE_J10.mp4" download>&#11015; ELEMENT MP4 <em>1.5 MB</em></a>
 <a class="b png" href="files/STILL_J10.png" download>&#11015; STILL PNG <em>626.1 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Card hold 4.6s exactly.</div>
-</article><article class="sc">
-<header><span class="n">11</span><span class="tc">0:48.60 - 0:52.76 · 4.17s</span><h3>OFFER - Julie on camera: Come learn with us at Longevity Life Academy. Hard cut on the word 18.</h3></header>
-<div class="meta"><span class="k">Footage</span>Julie raw camera</div>
+<a class="b png" href="files/ELEM_J10_A.png" download>&#11015; FRAME A PNG <em>404.4 KB</em></a><a class="b png" href="files/ELEM_J10_B.png" download>&#11015; FRAME B PNG <em>626.1 KB</em></a><a class="b png" href="files/ELEM_J10_C.png" download>&#11015; FRAME C PNG <em>817.0 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 12 · 0:52.76 - 0:54.66</span>
+<h3>CARD — “18 Live Session Course. Claim your seat.”</h3><p>Offer card, music only</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J11.mp4" download>&#11015; SCENE MP4 <em>2.1 MB</em></a>
-<a class="b png" href="files/STILL_J11.png" download>&#11015; STILL PNG <em>1.1 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_om &middot; 929.4 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Captions top-side while the lower third runs.</div>
-</article><article class="sc">
-<header><span class="n">12</span><span class="tc">0:52.76 - 0:54.66 · 1.90s</span><h3>CARD - 18 Live Session Course. Claim your seat. Music only.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J12.mp4" download>&#11015; SCENE MP4 <em>325.0 KB</em></a>
+<a class="b mp4" href="files/SCENE_J12.mp4" download>&#11015; ELEMENT MP4 <em>325.0 KB</em></a>
 <a class="b png" href="files/STILL_J12.png" download>&#11015; STILL PNG <em>353.4 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>No captions on cards. Silence then drama build.</div>
-</article><article class="sc">
-<header><span class="n">13</span><span class="tc">0:54.66 - 0:59.66 · 5.00s</span><h3>MUSIC ONLY - As seen on: USA TODAY, Yahoo Finance, Business Insider, MarketWatch.</h3></header>
-<div class="meta"><span class="k">Footage</span>Press wall is inside the current film. Re-make at 4K.</div>
+<a class="b png" href="files/ELEM_J12_A.png" download>&#11015; FRAME A PNG <em>312.8 KB</em></a><a class="b png" href="files/ELEM_J12_B.png" download>&#11015; FRAME B PNG <em>353.4 KB</em></a><a class="b png" href="files/ELEM_J12_C.png" download>&#11015; FRAME C PNG <em>352.1 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 13 · 0:54.66 - 0:59.66</span>
+<h3>PRESS WALL — USA TODAY, Yahoo Finance, Business Insider</h3><p>Logo wall graphic</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J13.mp4" download>&#11015; SCENE MP4 <em>461.3 KB</em></a>
+<a class="b mp4" href="files/SCENE_J13.mp4" download>&#11015; ELEMENT MP4 <em>461.3 KB</em></a>
 <a class="b png" href="files/STILL_J13.png" download>&#11015; STILL PNG <em>197.8 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>All outlet logos coloured and visible. No captions, no VO.</div>
-</article><article class="sc">
-<header><span class="n">14</span><span class="tc">0:59.66 - 1:02.86 · 3.20s</span><h3>MUSIC ONLY - the real Zoom room, six students live.</h3></header>
-<div class="meta"><span class="k">Footage</span>Zoom room footage is inside the current film.</div>
+<a class="b png" href="files/ELEM_J13_A.png" download>&#11015; FRAME A PNG <em>35.6 KB</em></a><a class="b png" href="files/ELEM_J13_B.png" download>&#11015; FRAME B PNG <em>197.8 KB</em></a><a class="b png" href="files/ELEM_J13_C.png" download>&#11015; FRAME C PNG <em>204.6 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 15 · 1:02.86 - 1:06.39</span>
+<h3>COLLAGE — phones</h3><p>Device collage graphic</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J14.mp4" download>&#11015; SCENE MP4 <em>1.6 MB</em></a>
-<a class="b png" href="files/STILL_J14.png" download>&#11015; STILL PNG <em>1.6 MB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Participants silent. This proves the sessions are real.</div>
-</article><article class="sc">
-<header><span class="n">15</span><span class="tc">1:02.86 - 1:06.39 · 3.53s</span><h3>VO RESUMES - phones collage, we&amp;#x27;ll build habits small enough to keep.</h3></header>
-<div class="meta"><span class="k">Footage</span>Collage image, 8.3 MB</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J15.mp4" download>&#11015; SCENE MP4 <em>3.6 MB</em></a>
+<a class="b mp4" href="files/SCENE_J15.mp4" download>&#11015; ELEMENT MP4 <em>3.6 MB</em></a>
 <a class="b png" href="files/STILL_J15.png" download>&#11015; STILL PNG <em>998.4 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1lgYUN7dI_BVbQmk4xjZtUeELahz_TK48&amp;export=download&amp;confirm=t" download>&#11015; SOURCE PNG <em>Collage(1).png &middot; 8.3 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Slow zoom in on the course material. VO matched to footage.</div>
-</article><article class="sc">
-<header><span class="n">16</span><span class="tc">1:06.39 - 1:10.88 · 4.49s</span><h3>VO - kitchen CGM sensor, survive travel, stress and a full calendar.</h3></header>
-<div class="meta"><span class="k">Footage</span>Kitchen CGM footage</div>
+<a class="b png" href="files/ELEM_J15_A.png" download>&#11015; FRAME A PNG <em>457.6 KB</em></a><a class="b png" href="files/ELEM_J15_B.png" download>&#11015; FRAME B PNG <em>998.4 KB</em></a><a class="b png" href="files/ELEM_J15_C.png" download>&#11015; FRAME C PNG <em>621.7 KB</em></a><a class="b src" href="src/Collage_1_.png" download>&#11015; SOURCE PNG <em>Collage(1).png · 8.3 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 19 · 1:18.70 - 1:21.31</span>
+<h3>CARD — “Your biomarkers. Your data. Your longevity protocol.”</h3><p>Full-frame card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J16.mp4" download>&#11015; SCENE MP4 <em>4.6 MB</em></a>
-<a class="b png" href="files/STILL_J16.png" download>&#11015; STILL PNG <em>1.1 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=10Y2JmVO0I3x1A8A8AUWXEzmPb3-xTqtx&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 &middot; 14.9 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>VO matched to footage.</div>
-</article><article class="sc">
-<header><span class="n">17</span><span class="tc">1:10.88 - 1:14.79 · 3.91s</span><h3>VO - slowed laptop protocol footage, designed around your real life.</h3></header>
-<div class="meta"><span class="k">Footage</span>Laptop footage is inside the current film.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J17.mp4" download>&#11015; SCENE MP4 <em>2.2 MB</em></a>
-<a class="b png" href="files/STILL_J17.png" download>&#11015; STILL PNG <em>1.1 MB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Slow it smoothly. No jitter, no frame blending artefacts.</div>
-</article><article class="sc">
-<header><span class="n">18</span><span class="tc">1:14.79 - 1:18.70 · 3.91s</span><h3>VO - site pan across the LLA faculty line-up.</h3></header>
-<div class="meta"><span class="k">Footage</span>Faculty page is inside the current film. Live page: longevitylifeacademy.com</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J18.mp4" download>&#11015; SCENE MP4 <em>491.8 KB</em></a>
-<a class="b png" href="files/STILL_J18.png" download>&#11015; STILL PNG <em>939.7 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Smooth pan, credibility beat. Names must be readable.</div>
-</article><article class="sc">
-<header><span class="n">19</span><span class="tc">1:18.70 - 1:21.31 · 2.61s</span><h3>VO - card: Your biomarkers. Your data. Your longevity protocol.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J19.mp4" download>&#11015; SCENE MP4 <em>496.6 KB</em></a>
+<a class="b mp4" href="files/SCENE_J19.mp4" download>&#11015; ELEMENT MP4 <em>496.6 KB</em></a>
 <a class="b png" href="files/STILL_J19.png" download>&#11015; STILL PNG <em>378.4 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Protocol beat. Order: biomarkers, then data, then protocol.</div>
-</article><article class="sc">
-<header><span class="n">20</span><span class="tc">1:21.31 - 1:24.43 · 3.12s</span><h3>VO - arm with CGM sensor and biomarker numbers. Extended hold, VO closes.</h3></header>
-<div class="meta"><span class="k">Footage</span>CGM arm footage</div>
+<a class="b png" href="files/ELEM_J19_A.png" download>&#11015; FRAME A PNG <em>309.5 KB</em></a><a class="b png" href="files/ELEM_J19_B.png" download>&#11015; FRAME B PNG <em>378.4 KB</em></a><a class="b png" href="files/ELEM_J19_C.png" download>&#11015; FRAME C PNG <em>376.5 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 23 · 1:30.76 - 1:33.66</span>
+<h3>BLACK CARD — by eTeacher Group, logo scales up</h3><p>Endorsement card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J20.mp4" download>&#11015; SCENE MP4 <em>2.0 MB</em></a>
-<a class="b png" href="files/STILL_J20.png" download>&#11015; STILL PNG <em>1.4 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=10Y2JmVO0I3x1A8A8AUWXEzmPb3-xTqtx&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 &middot; 14.9 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>VO ends on this card. Hold, do not cut early.</div>
-</article><article class="sc">
-<header><span class="n">21</span><span class="tc">1:24.33 - 1:28.10 · 3.77s</span><h3>WELCOME - her welcome line on camera. Large floating caption removed.</h3></header>
-<div class="meta"><span class="k">Footage</span>Julie raw camera</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J21.mp4" download>&#11015; SCENE MP4 <em>1.9 MB</em></a>
-<a class="b png" href="files/STILL_J21.png" download>&#11015; STILL PNG <em>1.0 MB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_om &middot; 929.4 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Hand-off into the course block.</div>
-</article><article class="sc">
-<header><span class="n">22</span><span class="tc">1:27.68 - 1:31.18 · 3.50s</span><h3>THE PROTOCOL WHEEL - six-pillar wheel resolves the system visually.</h3></header>
-<div class="meta"><span class="k">Footage</span>Wheel is inside the current film. Support clip: PROTOCOL2.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J22.mp4" download>&#11015; SCENE MP4 <em>1.4 MB</em></a>
-<a class="b png" href="files/STILL_J22.png" download>&#11015; STILL PNG <em>529.3 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1yCocLUMedCP09kJBKRkPx6qunrwvU8ND&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>PROTOCOL2.mp4 &middot; 10.5 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Final proof beat. Clean, premium motion.</div>
-</article><article class="sc">
-<header><span class="n">23</span><span class="tc">1:30.76 - 1:33.66 · 2.90s</span><h3>BLACK CARD - by eTeacher Group, logo scales up in blue with a low accent hit.</h3></header>
-<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
-<div class="btns">
-<a class="b mp4" href="files/SCENE_J23.mp4" download>&#11015; SCENE MP4 <em>1.1 MB</em></a>
+<a class="b mp4" href="files/SCENE_J23.mp4" download>&#11015; ELEMENT MP4 <em>1.1 MB</em></a>
 <a class="b png" href="files/STILL_J23.png" download>&#11015; STILL PNG <em>259.3 KB</em></a>
-<span class="none">No separate source file — this shot exists only inside the film. Use the scene MP4.</span>
-</div>
-<div class="do"><span class="k">Do this</span>Full black. One beat before the final frame.</div>
-</article><article class="sc">
-<header><span class="n">24</span><span class="tc">1:33.24 - 1:36.74 · 3.50s</span><h3>CLOSE - LLA brand outro and end card, ENROLL NOW, 4.6 on Trustpilot.</h3></header>
-<div class="meta"><span class="k">Footage</span>LLA Outro Card</div>
+<a class="b png" href="files/ELEM_J23_A.png" download>&#11015; FRAME A PNG <em>423.8 KB</em></a><a class="b png" href="files/ELEM_J23_B.png" download>&#11015; FRAME B PNG <em>259.3 KB</em></a><a class="b png" href="files/ELEM_J23_C.png" download>&#11015; FRAME C PNG <em>256.6 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 24 · 1:33.24 - 1:36.74</span>
+<h3>LLA BRAND OUTRO + END CARD — ENROLL NOW</h3><p>Brand outro card</p></div>
 <div class="btns">
-<a class="b mp4" href="files/SCENE_J24.mp4" download>&#11015; SCENE MP4 <em>1.3 MB</em></a>
+<a class="b mp4" href="files/SCENE_J24.mp4" download>&#11015; ELEMENT MP4 <em>1.3 MB</em></a>
 <a class="b png" href="files/STILL_J24.png" download>&#11015; STILL PNG <em>337.0 KB</em></a>
-<a class="b src" href="https://drive.usercontent.google.com/download?id=1l-Bri8wcQVrUu-zypNlVmWFRVgrAFbzG&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 &middot; 1.5 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1FqNe8efiUk5UL8hu8u1mZVDHmNrL_GCW&amp;export=download&amp;confirm=t" download>&#11015; SOURCE M4A <em>River.m4a &middot; 1.7 MB</em></a>
-</div>
-<div class="do"><span class="k">Do this</span>Untouched brand outro. Keep the Trustpilot stars readable.</div>
-</article>
-<footer>Films: <a href="https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_90s_v16.mp4">Courtney V16 MP4</a> &middot; <a href="https://github.com/gitteromri-ux/lla-s09-s10-downloads/releases/download/julie-v23-final/JULIE_LLA_V23_90S.mp4">Julie V23 MP4</a> &middot; Storyboards: <a href="https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_v16_Storyboard_95s.pdf">Courtney</a> &middot; <a href="https://github.com/gitteromri-ux/lla-s09-s10-downloads/releases/download/julie-v23-final/SB_V23_90S.pdf">Julie</a></footer>
+<a class="b png" href="files/ELEM_J24_A.png" download>&#11015; FRAME A PNG <em>291.4 KB</em></a><a class="b png" href="files/ELEM_J24_B.png" download>&#11015; FRAME B PNG <em>337.0 KB</em></a><a class="b png" href="files/ELEM_J24_C.png" download>&#11015; FRAME C PNG <em>380.6 KB</em></a><a class="b src" href="src/LLAOutroCard.mp4" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 · 1.5 MB · on this site</em></a><a class="b src" href="src/River.m4a" download>&#11015; SOURCE M4A <em>River.m4a · 1.7 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 03 · 0:07.37 - 0:12.13</span>
+<h3>LOWER THIRD — black box caption beside Julie</h3><p>On-camera caption treatment</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_J03.mp4" download>&#11015; ELEMENT MP4 <em>2.6 MB</em></a>
+<a class="b png" href="files/STILL_J03.png" download>&#11015; STILL PNG <em>1.0 MB</em></a>
+<a class="b png" href="files/ELEM_J03_A.png" download>&#11015; FRAME A PNG <em>1.0 MB</em></a><a class="b png" href="files/ELEM_J03_B.png" download>&#11015; FRAME B PNG <em>1.0 MB</em></a><a class="b png" href="files/ELEM_J03_C.png" download>&#11015; FRAME C PNG <em>1008.2 KB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_omri · 929.4 MB · direct file download</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 11 · 0:48.60 - 0:52.76</span>
+<h3>LOWER THIRD — Julie offer line</h3><p>On-camera caption treatment</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_J11.mp4" download>&#11015; ELEMENT MP4 <em>2.1 MB</em></a>
+<a class="b png" href="files/STILL_J11.png" download>&#11015; STILL PNG <em>1.1 MB</em></a>
+<a class="b png" href="files/ELEM_J11_A.png" download>&#11015; FRAME A PNG <em>742.5 KB</em></a><a class="b png" href="files/ELEM_J11_B.png" download>&#11015; FRAME B PNG <em>1.1 MB</em></a><a class="b png" href="files/ELEM_J11_C.png" download>&#11015; FRAME C PNG <em>1.1 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_omri · 929.4 MB · direct file download</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 07 · 0:26.65 - 0:29.45</span>
+<h3>B-ROLL ELEMENT — macro clock</h3><p>Motion element</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_J07.mp4" download>&#11015; ELEMENT MP4 <em>1.6 MB</em></a>
+<a class="b png" href="files/STILL_J07.png" download>&#11015; STILL PNG <em>780.7 KB</em></a>
+<a class="b png" href="files/ELEM_J07_A.png" download>&#11015; FRAME A PNG <em>517.4 KB</em></a><a class="b png" href="files/ELEM_J07_B.png" download>&#11015; FRAME B PNG <em>780.7 KB</em></a><a class="b png" href="files/ELEM_J07_C.png" download>&#11015; FRAME C PNG <em>874.0 KB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 17 · 1:10.88 - 1:14.79</span>
+<h3>LAPTOP PROTOCOL — slowed</h3><p>Motion element</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_J17.mp4" download>&#11015; ELEMENT MP4 <em>2.2 MB</em></a>
+<a class="b png" href="files/STILL_J17.png" download>&#11015; STILL PNG <em>1.1 MB</em></a>
+<a class="b png" href="files/ELEM_J17_A.png" download>&#11015; FRAME A PNG <em>1.1 MB</em></a><a class="b png" href="files/ELEM_J17_B.png" download>&#11015; FRAME B PNG <em>1.1 MB</em></a><a class="b png" href="files/ELEM_J17_C.png" download>&#11015; FRAME C PNG <em>1.3 MB</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 02 · 0:02.5 - 0:05</span>
+<h3>OPENING SHOT — eye macro hook</h3><p>Motion element</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_C02.mp4" download>&#11015; ELEMENT MP4 <em>2.2 MB</em></a>
+<a class="b png" href="files/STILL_C02.png" download>&#11015; STILL PNG <em>1.2 MB</em></a>
+<a class="b png" href="files/ELEM_C02_A.png" download>&#11015; FRAME A PNG <em>383.5 KB</em></a><a class="b png" href="files/ELEM_C02_B.png" download>&#11015; FRAME B PNG <em>1.2 MB</em></a><a class="b png" href="files/ELEM_C02_C.png" download>&#11015; FRAME C PNG <em>791.7 KB</em></a><a class="b src" href="src/OPENBEFORECORTNEY.mp4" download>&#11015; SOURCE MP4 <em>OPENBEFORECORTNEY · 41.1 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 12 · 0:34 - 0:35.5</span>
+<h3>CGM PRESS — pillar intro</h3><p>Motion element</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_C12.mp4" download>&#11015; ELEMENT MP4 <em>874.0 KB</em></a>
+<a class="b png" href="files/STILL_C12.png" download>&#11015; STILL PNG <em>1.4 MB</em></a>
+<a class="b png" href="files/ELEM_C12_A.png" download>&#11015; FRAME A PNG <em>1.3 MB</em></a><a class="b png" href="files/ELEM_C12_B.png" download>&#11015; FRAME B PNG <em>1.4 MB</em></a><a class="b png" href="files/ELEM_C12_C.png" download>&#11015; FRAME C PNG <em>1.3 MB</em></a><a class="b src" href="src/HIGGSFIELDLONGEVITYCGM1.mp4" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 · 14.9 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 16 · 1:06.39 - 1:10.88</span>
+<h3>KITCHEN CGM SENSOR</h3><p>Motion element</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_J16.mp4" download>&#11015; ELEMENT MP4 <em>4.6 MB</em></a>
+<a class="b png" href="files/STILL_J16.png" download>&#11015; STILL PNG <em>1.1 MB</em></a>
+<a class="b png" href="files/ELEM_J16_A.png" download>&#11015; FRAME A PNG <em>838.2 KB</em></a><a class="b png" href="files/ELEM_J16_B.png" download>&#11015; FRAME B PNG <em>1.1 MB</em></a><a class="b png" href="files/ELEM_J16_C.png" download>&#11015; FRAME C PNG <em>719.0 KB</em></a><a class="b src" href="src/HIGGSFIELDLONGEVITYCGM1.mp4" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 · 14.9 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">JULIE V23 · SCENE 20 · 1:21.31 - 1:24.43</span>
+<h3>CGM ARM + biomarker numbers</h3><p>Motion element</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_J20.mp4" download>&#11015; ELEMENT MP4 <em>2.0 MB</em></a>
+<a class="b png" href="files/STILL_J20.png" download>&#11015; STILL PNG <em>1.4 MB</em></a>
+<a class="b png" href="files/ELEM_J20_A.png" download>&#11015; FRAME A PNG <em>1.3 MB</em></a><a class="b png" href="files/ELEM_J20_B.png" download>&#11015; FRAME B PNG <em>1.4 MB</em></a><a class="b png" href="files/ELEM_J20_C.png" download>&#11015; FRAME C PNG <em>1.4 MB</em></a><a class="b src" href="src/HIGGSFIELDLONGEVITYCGM1.mp4" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 · 14.9 MB · on this site</em></a></div></article><article class="el">
+<div class="elhead"><span class="chip">COURTNEY V16 · SCENE 06 · 0:15.5 - 0:17.4</span>
+<h3>LOWER THIRD — Courtney mid-line caption</h3><p>On-camera caption treatment</p></div>
+<div class="btns">
+<a class="b mp4" href="files/SCENE_C06.mp4" download>&#11015; ELEMENT MP4 <em>1.4 MB</em></a>
+<a class="b png" href="files/STILL_C06.png" download>&#11015; STILL PNG <em>1.5 MB</em></a>
+<a class="b png" href="files/ELEM_C06_A.png" download>&#11015; FRAME A PNG <em>1.3 MB</em></a><a class="b png" href="files/ELEM_C06_B.png" download>&#11015; FRAME B PNG <em>1.5 MB</em></a><a class="b png" href="files/ELEM_C06_C.png" download>&#11015; FRAME C PNG <em>1.4 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div></article>
+<h2>Courtney V16 — full scene list</h2><p class="cnt">40 scenes &middot; 95.104 s &middot; 8 on-camera syncs</p><article class="sc"><header><span class="n">01</span><span class="tc">0:00 - 0:02.5</span><h3>LLA logo opening</h3></header>
+<div class="meta"><span class="k">Footage</span>LLA Outro Card (same brand animation, used as opening)</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C01.mp4" download>&#11015; SCENE MP4 <em>1013.9 KB</em></a>
+<a class="b png" href="files/STILL_C01.png" download>&#11015; STILL PNG <em>462.5 KB</em></a><a class="b png" href="files/ELEM_C01_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C01_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C01_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/LLAOutroCard.mp4" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 · 1.5 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Keep brand ident clean.</div></article><article class="sc"><header><span class="n">02</span><span class="tc">0:02.5 - 0:05</span><h3>Eye macro hook</h3></header>
+<div class="meta"><span class="k">Footage</span>Opening shot: OPEN BEFORE COURTNEY</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C02.mp4" download>&#11015; SCENE MP4 <em>2.2 MB</em></a>
+<a class="b png" href="files/STILL_C02.png" download>&#11015; STILL PNG <em>1.2 MB</em></a><a class="b png" href="files/ELEM_C02_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C02_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C02_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/OPENBEFORECORTNEY.mp4" download>&#11015; SOURCE MP4 <em>OPENBEFORECORTNEY · 41.1 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Fast, tight, premium. This is the hook.</div></article><article class="sc"><header><span class="n">03</span><span class="tc">0:05 - 0:09.3</span><h3>Courtney on camera. VO: trying to fix your health. White box caption removed, lower third kept.</h3></header>
+<div class="meta"><span class="k">Footage</span>Courtney raw front camera, 1.25 GB</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C03.mp4" download>&#11015; SCENE MP4 <em>3.3 MB</em></a>
+<a class="b png" href="files/STILL_C03.png" download>&#11015; STILL PNG <em>1.4 MB</em></a><a class="b png" href="files/ELEM_C03_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C03_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C03_C.png" download>&#11015; FRAME C</a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>LIP SYNC BROKEN FROM HERE. Fix with the raw take, or use repair clip S1.</div></article><article class="sc"><header><span class="n">04</span><span class="tc">0:09.3 - 0:12.5</span><h3>Influencer montage. Box caption removed.</h3></header>
+<div class="meta"><span class="k">Footage</span>Take from the current film</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C04.mp4" download>&#11015; SCENE MP4 <em>3.1 MB</em></a>
+<a class="b png" href="files/STILL_C04.png" download>&#11015; STILL PNG <em>1.3 MB</em></a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Fast montage, no default transitions.</div></article><article class="sc"><header><span class="n">05</span><span class="tc">0:12.5 - 0:15.5</span><h3>Doom-scroll b-roll</h3></header>
+<div class="meta"><span class="k">Footage</span>Take from the current film</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C05.mp4" download>&#11015; SCENE MP4 <em>2.1 MB</em></a>
+<a class="b png" href="files/STILL_C05.png" download>&#11015; STILL PNG <em>1.2 MB</em></a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Keep it short and nervous, then release into her.</div></article><article class="sc"><header><span class="n">06</span><span class="tc">0:15.5 - 0:17.4</span><h3>Courtney on camera</h3></header>
+<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C06.mp4" download>&#11015; SCENE MP4 <em>1.4 MB</em></a>
+<a class="b png" href="files/STILL_C06.png" download>&#11015; STILL PNG <em>1.5 MB</em></a><a class="b png" href="files/ELEM_C06_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C06_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C06_C.png" download>&#11015; FRAME C</a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>Check lip sync frame by frame. Repair clip S2 if needed.</div></article><article class="sc"><header><span class="n">07</span><span class="tc">0:17.4 - 0:20.9</span><h3>CARD: Your direct path to a longer, better life.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C07.mp4" download>&#11015; SCENE MP4 <em>125.8 KB</em></a>
+<a class="b png" href="files/STILL_C07.png" download>&#11015; STILL PNG <em>157.4 KB</em></a><a class="b png" href="files/ELEM_C07_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C07_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C07_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Held until she speaks.</div></article><article class="sc"><header><span class="n">08</span><span class="tc">0:20.9 - 0:27.7</span><h3>Courtney on camera. Original take planted on the voice, waveform-anchored.</h3></header>
+<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C08.mp4" download>&#11015; SCENE MP4 <em>4.9 MB</em></a>
+<a class="b png" href="files/STILL_C08.png" download>&#11015; STILL PNG <em>1.6 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>This is the main sync repair. Anchor to the waveform exactly.</div></article><article class="sc"><header><span class="n">09</span><span class="tc">0:27.7 - 0:29.2</span><h3>CARD: Your own blueprint. Replaces the road shot.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C09.mp4" download>&#11015; SCENE MP4 <em>639.4 KB</em></a>
+<a class="b png" href="files/STILL_C09.png" download>&#11015; STILL PNG <em>342.9 KB</em></a><a class="b png" href="files/ELEM_C09_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C09_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C09_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>The road shot must not appear.</div></article><article class="sc"><header><span class="n">10</span><span class="tc">0:29.2 - 0:33</span><h3>Courtney on camera. Whole-path box removed.</h3></header>
+<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C10.mp4" download>&#11015; SCENE MP4 <em>2.7 MB</em></a>
+<a class="b png" href="files/STILL_C10.png" download>&#11015; STILL PNG <em>1.5 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>No box caption here.</div></article><article class="sc"><header><span class="n">11</span><span class="tc">0:33 - 0:34</span><h3>CARD: Master the six pillars. APPEARS ONCE ONLY.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C11.mp4" download>&#11015; SCENE MP4 <em>376.2 KB</em></a>
+<a class="b png" href="files/STILL_C11.png" download>&#11015; STILL PNG <em>253.6 KB</em></a><a class="b png" href="files/ELEM_C11_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C11_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C11_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>DELETE THE DUPLICATE AT 0:44. This card appears one time.</div></article><article class="sc"><header><span class="n">12</span><span class="tc">0:34 - 0:35.5</span><h3>Pillar intro: your numbers. CGM press.</h3></header>
+<div class="meta"><span class="k">Footage</span>CGM footage</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C12.mp4" download>&#11015; SCENE MP4 <em>874.0 KB</em></a>
+<a class="b png" href="files/STILL_C12.png" download>&#11015; STILL PNG <em>1.4 MB</em></a><a class="b png" href="files/ELEM_C12_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C12_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C12_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/HIGGSFIELDLONGEVITYCGM1.mp4" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 · 14.9 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Tight press on the sensor.</div></article><article class="sc"><header><span class="n">13</span><span class="tc">0:35.5 - 0:37</span><h3>PILLAR 1: Nutrition</h3></header>
+<div class="meta"><span class="k">Footage</span>FOOD1 (full original: avocado shake 4K)</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C13.mp4" download>&#11015; SCENE MP4 <em>1.8 MB</em></a>
+<a class="b png" href="files/STILL_C13.png" download>&#11015; STILL PNG <em>1.5 MB</em></a><a class="b src" href="src/FOOD1.mp4" download>&#11015; SOURCE MP4 <em>FOOD1 · 58.2 MB · on this site</em></a><a class="b src" href="src/423878_Avocado_Shake_Smoothie_Almonds_By_Phantom_Gravity_Artlist_4K_1_.mp4" download>&#11015; SOURCE MP4 <em>423878_Avocado_Shake_Smoothie_Almonds_By_Phant · 58.2 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Cut exactly on the word Nutrition.</div></article><article class="sc"><header><span class="n">14</span><span class="tc">0:37 - 0:38.2</span><h3>PILLAR 2: Sleep</h3></header>
+<div class="meta"><span class="k">Footage</span>No sleep clip in Drive. Take the sleep shot from the Master Six Pillars video on longevitylifeacademy.com</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C14.mp4" download>&#11015; SCENE MP4 <em>824.6 KB</em></a>
+<a class="b png" href="files/STILL_C14.png" download>&#11015; STILL PNG <em>1.3 MB</em></a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Cut exactly on the word Sleep.</div></article><article class="sc"><header><span class="n">15</span><span class="tc">0:38.2 - 0:39</span><h3>PILLAR 3: Movement</h3></header>
+<div class="meta"><span class="k">Footage</span>SPORT (also SPORT2, SPORT3, stretching 4K)</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C15.mp4" download>&#11015; SCENE MP4 <em>768.4 KB</em></a>
+<a class="b png" href="files/STILL_C15.png" download>&#11015; STILL PNG <em>505.5 KB</em></a><a class="b src" href="src/SPORT.mp4" download>&#11015; SOURCE MP4 <em>SPORT.mp4 · 37.3 MB · on this site</em></a><a class="b src" href="src/402510_EquipmentStretchingTrainingExercise_By_Polina_Borisova_Artlist_4K.mp4" download>&#11015; SOURCE MP4 <em>402510_EquipmentStretchingTrainingExercise_By_ · 77.6 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Cut exactly on the word Movement. Use this clip only here.</div></article><article class="sc"><header><span class="n">16</span><span class="tc">0:39 - 0:41.2</span><h3>PILLAR 4: Supplementation</h3></header>
+<div class="meta"><span class="k">Footage</span>Pills 4K</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C16.mp4" download>&#11015; SCENE MP4 <em>1.6 MB</em></a>
+<a class="b png" href="files/STILL_C16.png" download>&#11015; STILL PNG <em>974.7 KB</em></a><a class="b src" href="src/6308053_Pills_Drug_Futuristic_Light_By_Phong_Croco_Artlist_4K.mp4" download>&#11015; SOURCE MP4 <em>6308053_Pills_Drug_Futuristic_Light_By_Phong_C · 65.3 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Cut exactly on the word Supplementation.</div></article><article class="sc"><header><span class="n">17</span><span class="tc">0:41.2 - 0:42.3</span><h3>PILLAR 5: Protect your heart</h3></header>
+<div class="meta"><span class="k">Footage</span>FOOD3</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C17.mp4" download>&#11015; SCENE MP4 <em>1.1 MB</em></a>
+<a class="b png" href="files/STILL_C17.png" download>&#11015; STILL PNG <em>966.6 KB</em></a><a class="b src" href="src/FOOD3.mp4" download>&#11015; SOURCE MP4 <em>FOOD3 · 61.8 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Cut exactly on the words Protect your heart.</div></article><article class="sc"><header><span class="n">18</span><span class="tc">0:42.3 - 0:44.4</span><h3>PILLAR 6: Know your numbers graph. B-roll must not start early.</h3></header>
+<div class="meta"><span class="k">Footage</span>Graph is inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C18.mp4" download>&#11015; SCENE MP4 <em>1.9 MB</em></a>
+<a class="b png" href="files/STILL_C18.png" download>&#11015; STILL PNG <em>732.0 KB</em></a><a class="b png" href="files/ELEM_C18_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C18_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C18_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>B-roll starts on the word, not before.</div></article><article class="sc"><header><span class="n">19</span><span class="tc">0:44.4 - 0:49.4</span><h3>Courtney on camera. Real take restored, sync exact.</h3></header>
+<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C19.mp4" download>&#11015; SCENE MP4 <em>3.7 MB</em></a>
+<a class="b png" href="files/STILL_C19.png" download>&#11015; STILL PNG <em>1.7 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>Sync must be exact here. Repair clip S3 if needed.</div></article><article class="sc"><header><span class="n">20</span><span class="tc">0:49.4 - 0:52.5</span><h3>Courtney on camera. Not-opinions box removed.</h3></header>
+<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C20.mp4" download>&#11015; SCENE MP4 <em>2.0 MB</em></a>
+<a class="b png" href="files/STILL_C20.png" download>&#11015; STILL PNG <em>1.8 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>No box caption.</div></article><article class="sc"><header><span class="n">21</span><span class="tc">0:52.7 - 0:54</span><h3>Green pipette, slow. Only after Courtney says it. Caption removed.</h3></header>
+<div class="meta"><span class="k">Footage</span>Take from the current film. NOTE: all other green lab footage is deleted, this single shot stays only if the board keeps it.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C21.mp4" download>&#11015; SCENE MP4 <em>534.1 KB</em></a>
+<a class="b png" href="files/STILL_C21.png" download>&#11015; STILL PNG <em>493.3 KB</em></a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Delete every other green micro-lab shot in the film.</div></article><article class="sc"><header><span class="n">22</span><span class="tc">0:54 - 0:56</span><h3>Courtney: Harvard line, ON CAMERA FIRST.</h3></header>
+<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C22.mp4" download>&#11015; SCENE MP4 <em>1.5 MB</em></a>
+<a class="b png" href="files/STILL_C22.png" download>&#11015; STILL PNG <em>1.6 MB</em></a><a class="b png" href="files/ELEM_C22_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C22_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C22_C.png" download>&#11015; FRAME C</a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>She says the line first, THEN the graph. Order is wrong in the current film.</div></article><article class="sc"><header><span class="n">23</span><span class="tc">0:56 - 0:58.2</span><h3>Food flatlay. Clean, box removed.</h3></header>
+<div class="meta"><span class="k">Footage</span>FOOD3 (or avocado 4K)</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C23.mp4" download>&#11015; SCENE MP4 <em>2.2 MB</em></a>
+<a class="b png" href="files/STILL_C23.png" download>&#11015; STILL PNG <em>2.3 MB</em></a><a class="b src" href="src/FOOD3.mp4" download>&#11015; SOURCE MP4 <em>FOOD3 · 61.8 MB · on this site</em></a><a class="b src" href="src/423878_Avocado_Shake_Smoothie_Almonds_By_Phantom_Gravity_Artlist_4K_1_.mp4" download>&#11015; SOURCE MP4 <em>423878_Avocado_Shake_Smoothie_Almonds_By_Phant · 58.2 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Clean, no caption box.</div></article><article class="sc"><header><span class="n">24</span><span class="tc">0:58.2 - 0:59.5</span><h3>Courtney: five of these very habits</h3></header>
+<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C24.mp4" download>&#11015; SCENE MP4 <em>927.8 KB</em></a>
+<a class="b png" href="files/STILL_C24.png" download>&#11015; STILL PNG <em>1.4 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>Repair clip S4 if sync drifts.</div></article><article class="sc"><header><span class="n">25</span><span class="tc">0:59.5 - 1:02.5</span><h3>CARD: Five habits by age 40. +14 extra years.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C25.mp4" download>&#11015; SCENE MP4 <em>1.1 MB</em></a>
+<a class="b png" href="files/STILL_C25.png" download>&#11015; STILL PNG <em>368.5 KB</em></a><a class="b png" href="files/ELEM_C25_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C25_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C25_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>This card goes EARLY, as here. Not near the end.</div></article><article class="sc"><header><span class="n">26</span><span class="tc">1:02.5 - 1:04.7</span><h3>CARD: 18 Live Session Course.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C26.mp4" download>&#11015; SCENE MP4 <em>794.3 KB</em></a>
+<a class="b png" href="files/STILL_C26.png" download>&#11015; STILL PNG <em>415.9 KB</em></a><a class="b png" href="files/ELEM_C26_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C26_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C26_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Clean typography, no captions on cards.</div></article><article class="sc"><header><span class="n">27</span><span class="tc">1:04.7 - 1:06.5</span><h3>Zoom live session</h3></header>
+<div class="meta"><span class="k">Footage</span>Take from the current film</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C27.mp4" download>&#11015; SCENE MP4 <em>902.6 KB</em></a>
+<a class="b png" href="files/STILL_C27.png" download>&#11015; STILL PNG <em>1.5 MB</em></a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Real session, proof beat.</div></article><article class="sc"><header><span class="n">28</span><span class="tc">1:06.5 - 1:08</span><h3>Course platform collage</h3></header>
+<div class="meta"><span class="k">Footage</span>Collage image</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C28.mp4" download>&#11015; SCENE MP4 <em>947.2 KB</em></a>
+<a class="b png" href="files/STILL_C28.png" download>&#11015; STILL PNG <em>1.2 MB</em></a><a class="b png" href="files/ELEM_C28_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C28_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C28_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/Collage_1_.png" download>&#11015; SOURCE PNG <em>Collage(1).png · 8.3 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Slow zoom on the course material.</div></article><article class="sc"><header><span class="n">29</span><span class="tc">1:08 - 1:09.4</span><h3>Website CGM section</h3></header>
+<div class="meta"><span class="k">Footage</span>Take from the current film. Live page: longevitylifeacademy.com</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C29.mp4" download>&#11015; SCENE MP4 <em>614.8 KB</em></a>
+<a class="b png" href="files/STILL_C29.png" download>&#11015; STILL PNG <em>460.8 KB</em></a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Readable on mobile.</div></article><article class="sc"><header><span class="n">30</span><span class="tc">1:09.4 - 1:12.5</span><h3>CARD: Your biomarkers. Your data.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C30.mp4" download>&#11015; SCENE MP4 <em>1.0 MB</em></a>
+<a class="b png" href="files/STILL_C30.png" download>&#11015; STILL PNG <em>424.8 KB</em></a><a class="b png" href="files/ELEM_C30_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C30_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C30_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Order: biomarkers, data, then plan.</div></article><article class="sc"><header><span class="n">31</span><span class="tc">1:12.5 - 1:13.9</span><h3>CGM sensor pop</h3></header>
+<div class="meta"><span class="k">Footage</span>CGM footage</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C31.mp4" download>&#11015; SCENE MP4 <em>718.2 KB</em></a>
+<a class="b png" href="files/STILL_C31.png" download>&#11015; STILL PNG <em>1.1 MB</em></a><a class="b src" href="src/HIGGSFIELDLONGEVITYCGM1.mp4" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 · 14.9 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Quick, premium pop.</div></article><article class="sc"><header><span class="n">32</span><span class="tc">1:14 - 1:15</span><h3>Protocol wheel</h3></header>
+<div class="meta"><span class="k">Footage</span>PROTOCOL2</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C32.mp4" download>&#11015; SCENE MP4 <em>522.0 KB</em></a>
+<a class="b png" href="files/STILL_C32.png" download>&#11015; STILL PNG <em>590.0 KB</em></a><a class="b src" href="src/PROTOCOL2.mp4" download>&#11015; SOURCE MP4 <em>PROTOCOL2.mp4 · 10.5 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>This is the protocol beat. Comes AFTER the biomarkers b-roll.</div></article><article class="sc"><header><span class="n">33</span><span class="tc">1:15 - 1:15.9</span><h3>Blueprint page</h3></header>
+<div class="meta"><span class="k">Footage</span>Take from the current film</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C33.mp4" download>&#11015; SCENE MP4 <em>390.5 KB</em></a>
+<a class="b png" href="files/STILL_C33.png" download>&#11015; STILL PNG <em>414.0 KB</em></a><a class="b png" href="files/ELEM_C33_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C33_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C33_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Sharp text.</div></article><article class="sc"><header><span class="n">34</span><span class="tc">1:15.9 - 1:17.4</span><h3>Instructors page. Straight to the close in this cut.</h3></header>
+<div class="meta"><span class="k">Footage</span>Take from the current film</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C34.mp4" download>&#11015; SCENE MP4 <em>545.6 KB</em></a>
+<a class="b png" href="files/STILL_C34.png" download>&#11015; STILL PNG <em>862.9 KB</em></a><a class="b png" href="files/ELEM_C34_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C34_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C34_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Names readable.</div></article><article class="sc"><header><span class="n">35</span><span class="tc">1:17.4 - 1:20.7</span><h3>Courtney sign-off. Real take restored, native caption.</h3></header>
+<div class="meta"><span class="k">Footage</span>Courtney raw front camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C35.mp4" download>&#11015; SCENE MP4 <em>2.0 MB</em></a>
+<a class="b png" href="files/STILL_C35.png" download>&#11015; STILL PNG <em>1.6 MB</em></a><a class="b png" href="files/ELEM_C35_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C35_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C35_C.png" download>&#11015; FRAME C</a><a class="b src" href="https://drive.usercontent.google.com/download?id=1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>Courtney_FRONT_PRO.mp4 · 1.2 GB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>Sync exact, native caption only.</div></article><article class="sc"><header><span class="n">36</span><span class="tc">1:20.7 - 1:21.9</span><h3>Seat in light</h3></header>
+<div class="meta"><span class="k">Footage</span>Take from the current film</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C36.mp4" download>&#11015; SCENE MP4 <em>1.4 MB</em></a>
+<a class="b png" href="files/STILL_C36.png" download>&#11015; STILL PNG <em>1.5 MB</em></a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Calm, premium.</div></article><article class="sc"><header><span class="n">37</span><span class="tc">1:21.9 - 1:24.9</span><h3>CGM arm b-roll</h3></header>
+<div class="meta"><span class="k">Footage</span>CGM footage</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C37.mp4" download>&#11015; SCENE MP4 <em>2.8 MB</em></a>
+<a class="b png" href="files/STILL_C37.png" download>&#11015; STILL PNG <em>1.2 MB</em></a><a class="b src" href="src/HIGGSFIELDLONGEVITYCGM1.mp4" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 · 14.9 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Hold, do not cut early.</div></article><article class="sc"><header><span class="n">38</span><span class="tc">1:24.9 - 1:26.6</span><h3>Zoom laptop scene</h3></header>
+<div class="meta"><span class="k">Footage</span>Take from the current film</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C38.mp4" download>&#11015; SCENE MP4 <em>1.5 MB</em></a>
+<a class="b png" href="files/STILL_C38.png" download>&#11015; STILL PNG <em>1.1 MB</em></a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Clean, no jitter.</div></article><article class="sc"><header><span class="n">39</span><span class="tc">1:26.6 - 1:30</span><h3>OUTRO: Enroll now, 4.6 on Trustpilot</h3></header>
+<div class="meta"><span class="k">Footage</span>LLA Outro Card</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C39.mp4" download>&#11015; SCENE MP4 <em>1.1 MB</em></a>
+<a class="b png" href="files/STILL_C39.png" download>&#11015; STILL PNG <em>326.2 KB</em></a><a class="b png" href="files/ELEM_C39_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C39_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C39_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/LLAOutroCard.mp4" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 · 1.5 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Stars and CTA readable on mobile.</div></article><article class="sc"><header><span class="n">40</span><span class="tc">1:30 - 1:35.1</span><h3>END CARD: dancing man. Silent tail.</h3></header>
+<div class="meta"><span class="k">Footage</span>END FAST LAST (or OUTRO Rosen)</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_C40.mp4" download>&#11015; SCENE MP4 <em>5.8 MB</em></a>
+<a class="b png" href="files/STILL_C40.png" download>&#11015; STILL PNG <em>437.6 KB</em></a><a class="b png" href="files/ELEM_C40_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_C40_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_C40_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/ENDFASTLAST.mp4" download>&#11015; SOURCE MP4 <em>ENDFASTLAST · 26.1 MB · on this site</em></a><a class="b src" href="src/OUTRORosen.mp4" download>&#11015; SOURCE MP4 <em>OUTRORosen.mp4 · 20.1 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Dancing man is the very last thing. Silent.</div></article>
+<h2>Julie V23 — full scene list</h2><p class="cnt">24 scenes &middot; 97.200 s &middot; 5 on-camera syncs</p><article class="sc"><header><span class="n">01</span><span class="tc">0:00.00 - 0:03.47 · 3.47s</span><h3>OPEN - LLA brand ident. Score enters low and wide.</h3></header>
+<div class="meta"><span class="k">Footage</span>LLA Outro Card (brand animation)</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J01.mp4" download>&#11015; SCENE MP4 <em>1.5 MB</em></a>
+<a class="b png" href="files/STILL_J01.png" download>&#11015; STILL PNG <em>483.7 KB</em></a><a class="b png" href="files/ELEM_J01_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J01_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J01_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/LLAOutroCard.mp4" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 · 1.5 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Keep as is. Do not change the brand ident.</div></article><article class="sc"><header><span class="n">02</span><span class="tc">0:02.92 - 0:07.92 · 5.00s</span><h3>IDENTITY - banner card, larger hi-res LLA logo. Text: 2nd Slowest-Aging Person on Earth.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card is inside the current film. Re-make it at 4K, same layout, bigger logo.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J02.mp4" download>&#11015; SCENE MP4 <em>1.8 MB</em></a>
+<a class="b png" href="files/STILL_J02.png" download>&#11015; STILL PNG <em>1.1 MB</em></a><a class="b png" href="files/ELEM_J02_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J02_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J02_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Export the card at 3840x2160. Text must not touch the edges.</div></article><article class="sc"><header><span class="n">03</span><span class="tc">0:07.37 - 0:12.13 · 4.77s</span><h3>HOOK - Julie on camera. Black box caption beside her: SLOWER THAN OTHERS.</h3></header>
+<div class="meta"><span class="k">Footage</span>Julie raw camera, 929 MB</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J03.mp4" download>&#11015; SCENE MP4 <em>2.6 MB</em></a>
+<a class="b png" href="files/STILL_J03.png" download>&#11015; STILL PNG <em>1.0 MB</em></a><a class="b png" href="files/ELEM_J03_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J03_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J03_C.png" download>&#11015; FRAME C</a><a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_omri · 929.4 MB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>Use the raw take. Keep the black box caption clean and readable on mobile.</div></article><article class="sc"><header><span class="n">04</span><span class="tc">0:12.03 - 0:20.10 · 8.07s</span><h3>MECHANISM - the willpower myth. Floating lines: WILLPOWER RUNS OUT / IT&amp;#x27;S A TANK. IT EMPTIES.</h3></header>
+<div class="meta"><span class="k">Footage</span>Julie raw camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J04.mp4" download>&#11015; SCENE MP4 <em>5.4 MB</em></a>
+<a class="b png" href="files/STILL_J04.png" download>&#11015; STILL PNG <em>1.3 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_omri · 929.4 MB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>Meta-style floating type. No default software animation.</div></article><article class="sc"><header><span class="n">05</span><span class="tc">0:19.55 - 0:24.15 · 4.60s</span><h3>CARD - Slow your pace of aging. Centered, logo on top.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card is inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J05.mp4" download>&#11015; SCENE MP4 <em>1.1 MB</em></a>
+<a class="b png" href="files/STILL_J05.png" download>&#11015; STILL PNG <em>359.0 KB</em></a><a class="b png" href="files/ELEM_J05_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J05_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J05_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Centered card, Card-9 style.</div></article><article class="sc"><header><span class="n">06</span><span class="tc">0:23.60 - 0:27.20 · 3.60s</span><h3>CHART - one calendar year: 12 months typical vs about 8 months for Julie. Ticking SFX under it.</h3></header>
+<div class="meta"><span class="k">Footage</span>Chart is inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J06.mp4" download>&#11015; SCENE MP4 <em>1.0 MB</em></a>
+<a class="b png" href="files/STILL_J06.png" download>&#11015; STILL PNG <em>313.2 KB</em></a><a class="b png" href="files/ELEM_J06_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J06_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J06_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Keep the tick sound. Chart must be sharp, not upscaled.</div></article><article class="sc"><header><span class="n">07</span><span class="tc">0:26.65 - 0:29.45 · 2.80s</span><h3>B-ROLL - macro clock, the original clip.</h3></header>
+<div class="meta"><span class="k">Footage</span>Full clock footage is inside the current film. If you need more length, extend from the second camera raw.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J07.mp4" download>&#11015; SCENE MP4 <em>1.6 MB</em></a>
+<a class="b png" href="files/STILL_J07.png" download>&#11015; STILL PNG <em>780.7 KB</em></a><a class="b png" href="files/ELEM_J07_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J07_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J07_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Restore the original clip exactly. No speed change.</div></article><article class="sc"><header><span class="n">08</span><span class="tc">0:29.03 - 0:41.00 · 11.97s</span><h3>CREDIBILITY - number two in the world for slowest aging, working mother, ordinary budget.</h3></header>
+<div class="meta"><span class="k">Footage</span>Julie raw camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J08.mp4" download>&#11015; SCENE MP4 <em>5.9 MB</em></a>
+<a class="b png" href="files/STILL_J08.png" download>&#11015; STILL PNG <em>995.9 KB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_omri · 929.4 MB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>Large captions removed. Trim to the core proof only.</div></article><article class="sc"><header><span class="n">09</span><span class="tc">0:40.90 - 0:45.10 · 4.20s</span><h3>METHOD - Sleep. Food. Movement. One matching b-roll per word.</h3></header>
+<div class="meta"><span class="k">Footage</span>Sleep: take from the Master Six Pillars video on longevitylifeacademy.com. Food: FOOD1. Movement: SPORT.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J09.mp4" download>&#11015; SCENE MP4 <em>3.4 MB</em></a>
+<a class="b png" href="files/STILL_J09.png" download>&#11015; STILL PNG <em>905.4 KB</em></a><a class="b src" href="src/FOOD1.mp4" download>&#11015; SOURCE MP4 <em>FOOD1 · 58.2 MB · on this site</em></a><a class="b src" href="src/SPORT.mp4" download>&#11015; SOURCE MP4 <em>SPORT.mp4 · 37.3 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Three b-rolls, one per spoken word, cut exactly on the word.</div></article><article class="sc"><header><span class="n">10</span><span class="tc">0:44.55 - 0:49.15 · 4.60s</span><h3>CARD - Learn longevity from the world&amp;#x27;s #2 slowest ager.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J10.mp4" download>&#11015; SCENE MP4 <em>1.5 MB</em></a>
+<a class="b png" href="files/STILL_J10.png" download>&#11015; STILL PNG <em>626.1 KB</em></a><a class="b png" href="files/ELEM_J10_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J10_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J10_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Card hold 4.6s exactly.</div></article><article class="sc"><header><span class="n">11</span><span class="tc">0:48.60 - 0:52.76 · 4.17s</span><h3>OFFER - Julie on camera: Come learn with us at Longevity Life Academy. Hard cut on the word 18.</h3></header>
+<div class="meta"><span class="k">Footage</span>Julie raw camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J11.mp4" download>&#11015; SCENE MP4 <em>2.1 MB</em></a>
+<a class="b png" href="files/STILL_J11.png" download>&#11015; STILL PNG <em>1.1 MB</em></a><a class="b png" href="files/ELEM_J11_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J11_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J11_C.png" download>&#11015; FRAME C</a><a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_omri · 929.4 MB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>Captions top-side while the lower third runs.</div></article><article class="sc"><header><span class="n">12</span><span class="tc">0:52.76 - 0:54.66 · 1.90s</span><h3>CARD - 18 Live Session Course. Claim your seat. Music only.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J12.mp4" download>&#11015; SCENE MP4 <em>325.0 KB</em></a>
+<a class="b png" href="files/STILL_J12.png" download>&#11015; STILL PNG <em>353.4 KB</em></a><a class="b png" href="files/ELEM_J12_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J12_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J12_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>No captions on cards. Silence then drama build.</div></article><article class="sc"><header><span class="n">13</span><span class="tc">0:54.66 - 0:59.66 · 5.00s</span><h3>MUSIC ONLY - As seen on: USA TODAY, Yahoo Finance, Business Insider, MarketWatch.</h3></header>
+<div class="meta"><span class="k">Footage</span>Press wall is inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J13.mp4" download>&#11015; SCENE MP4 <em>461.3 KB</em></a>
+<a class="b png" href="files/STILL_J13.png" download>&#11015; STILL PNG <em>197.8 KB</em></a><a class="b png" href="files/ELEM_J13_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J13_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J13_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>All outlet logos coloured and visible. No captions, no VO.</div></article><article class="sc"><header><span class="n">14</span><span class="tc">0:59.66 - 1:02.86 · 3.20s</span><h3>MUSIC ONLY - the real Zoom room, six students live.</h3></header>
+<div class="meta"><span class="k">Footage</span>Zoom room footage is inside the current film.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J14.mp4" download>&#11015; SCENE MP4 <em>1.6 MB</em></a>
+<a class="b png" href="files/STILL_J14.png" download>&#11015; STILL PNG <em>1.6 MB</em></a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Participants silent. This proves the sessions are real.</div></article><article class="sc"><header><span class="n">15</span><span class="tc">1:02.86 - 1:06.39 · 3.53s</span><h3>VO RESUMES - phones collage, we&amp;#x27;ll build habits small enough to keep.</h3></header>
+<div class="meta"><span class="k">Footage</span>Collage image, 8.3 MB</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J15.mp4" download>&#11015; SCENE MP4 <em>3.6 MB</em></a>
+<a class="b png" href="files/STILL_J15.png" download>&#11015; STILL PNG <em>998.4 KB</em></a><a class="b png" href="files/ELEM_J15_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J15_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J15_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/Collage_1_.png" download>&#11015; SOURCE PNG <em>Collage(1).png · 8.3 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Slow zoom in on the course material. VO matched to footage.</div></article><article class="sc"><header><span class="n">16</span><span class="tc">1:06.39 - 1:10.88 · 4.49s</span><h3>VO - kitchen CGM sensor, survive travel, stress and a full calendar.</h3></header>
+<div class="meta"><span class="k">Footage</span>Kitchen CGM footage</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J16.mp4" download>&#11015; SCENE MP4 <em>4.6 MB</em></a>
+<a class="b png" href="files/STILL_J16.png" download>&#11015; STILL PNG <em>1.1 MB</em></a><a class="b png" href="files/ELEM_J16_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J16_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J16_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/HIGGSFIELDLONGEVITYCGM1.mp4" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 · 14.9 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>VO matched to footage.</div></article><article class="sc"><header><span class="n">17</span><span class="tc">1:10.88 - 1:14.79 · 3.91s</span><h3>VO - slowed laptop protocol footage, designed around your real life.</h3></header>
+<div class="meta"><span class="k">Footage</span>Laptop footage is inside the current film.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J17.mp4" download>&#11015; SCENE MP4 <em>2.2 MB</em></a>
+<a class="b png" href="files/STILL_J17.png" download>&#11015; STILL PNG <em>1.1 MB</em></a><a class="b png" href="files/ELEM_J17_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J17_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J17_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Slow it smoothly. No jitter, no frame blending artefacts.</div></article><article class="sc"><header><span class="n">18</span><span class="tc">1:14.79 - 1:18.70 · 3.91s</span><h3>VO - site pan across the LLA faculty line-up.</h3></header>
+<div class="meta"><span class="k">Footage</span>Faculty page is inside the current film. Live page: longevitylifeacademy.com</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J18.mp4" download>&#11015; SCENE MP4 <em>491.8 KB</em></a>
+<a class="b png" href="files/STILL_J18.png" download>&#11015; STILL PNG <em>939.7 KB</em></a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Smooth pan, credibility beat. Names must be readable.</div></article><article class="sc"><header><span class="n">19</span><span class="tc">1:18.70 - 1:21.31 · 2.61s</span><h3>VO - card: Your biomarkers. Your data. Your longevity protocol.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J19.mp4" download>&#11015; SCENE MP4 <em>496.6 KB</em></a>
+<a class="b png" href="files/STILL_J19.png" download>&#11015; STILL PNG <em>378.4 KB</em></a><a class="b png" href="files/ELEM_J19_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J19_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J19_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Protocol beat. Order: biomarkers, then data, then protocol.</div></article><article class="sc"><header><span class="n">20</span><span class="tc">1:21.31 - 1:24.43 · 3.12s</span><h3>VO - arm with CGM sensor and biomarker numbers. Extended hold, VO closes.</h3></header>
+<div class="meta"><span class="k">Footage</span>CGM arm footage</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J20.mp4" download>&#11015; SCENE MP4 <em>2.0 MB</em></a>
+<a class="b png" href="files/STILL_J20.png" download>&#11015; STILL PNG <em>1.4 MB</em></a><a class="b png" href="files/ELEM_J20_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J20_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J20_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/HIGGSFIELDLONGEVITYCGM1.mp4" download>&#11015; SOURCE MP4 <em>HIGGSFIELDLONGEVITYCGM1.mp4 · 14.9 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>VO ends on this card. Hold, do not cut early.</div></article><article class="sc"><header><span class="n">21</span><span class="tc">1:24.33 - 1:28.10 · 3.77s</span><h3>WELCOME - her welcome line on camera. Large floating caption removed.</h3></header>
+<div class="meta"><span class="k">Footage</span>Julie raw camera</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J21.mp4" download>&#11015; SCENE MP4 <em>1.9 MB</em></a>
+<a class="b png" href="files/STILL_J21.png" download>&#11015; STILL PNG <em>1.0 MB</em></a><a class="b src" href="https://drive.usercontent.google.com/download?id=1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3&amp;export=download&amp;confirm=t" download>&#11015; SOURCE MP4 <em>riverside_julie_gibsonclark_raw-video-cfr_omri · 929.4 MB · direct file download</em></a></div>
+<div class="do"><span class="k">Do this</span>Hand-off into the course block.</div></article><article class="sc"><header><span class="n">22</span><span class="tc">1:27.68 - 1:31.18 · 3.50s</span><h3>THE PROTOCOL WHEEL - six-pillar wheel resolves the system visually.</h3></header>
+<div class="meta"><span class="k">Footage</span>Wheel is inside the current film. Support clip: PROTOCOL2.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J22.mp4" download>&#11015; SCENE MP4 <em>1.4 MB</em></a>
+<a class="b png" href="files/STILL_J22.png" download>&#11015; STILL PNG <em>529.3 KB</em></a><a class="b src" href="src/PROTOCOL2.mp4" download>&#11015; SOURCE MP4 <em>PROTOCOL2.mp4 · 10.5 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Final proof beat. Clean, premium motion.</div></article><article class="sc"><header><span class="n">23</span><span class="tc">1:30.76 - 1:33.66 · 2.90s</span><h3>BLACK CARD - by eTeacher Group, logo scales up in blue with a low accent hit.</h3></header>
+<div class="meta"><span class="k">Footage</span>Card inside the current film. Re-make at 4K.</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J23.mp4" download>&#11015; SCENE MP4 <em>1.1 MB</em></a>
+<a class="b png" href="files/STILL_J23.png" download>&#11015; STILL PNG <em>259.3 KB</em></a><a class="b png" href="files/ELEM_J23_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J23_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J23_C.png" download>&#11015; FRAME C</a><span class="none">No separate source file — this shot exists only inside the film. The SCENE MP4 and PNG below <b>are</b> the source.</span></div>
+<div class="do"><span class="k">Do this</span>Full black. One beat before the final frame.</div></article><article class="sc"><header><span class="n">24</span><span class="tc">1:33.24 - 1:36.74 · 3.50s</span><h3>CLOSE - LLA brand outro and end card, ENROLL NOW, 4.6 on Trustpilot.</h3></header>
+<div class="meta"><span class="k">Footage</span>LLA Outro Card</div>
+<div class="btns"><a class="b mp4" href="files/SCENE_J24.mp4" download>&#11015; SCENE MP4 <em>1.3 MB</em></a>
+<a class="b png" href="files/STILL_J24.png" download>&#11015; STILL PNG <em>337.0 KB</em></a><a class="b png" href="files/ELEM_J24_A.png" download>&#11015; FRAME A</a><a class="b png" href="files/ELEM_J24_B.png" download>&#11015; FRAME B</a><a class="b png" href="files/ELEM_J24_C.png" download>&#11015; FRAME C</a><a class="b src" href="src/LLAOutroCard.mp4" download>&#11015; SOURCE MP4 <em>LLAOutroCard.mp4 · 1.5 MB · on this site</em></a><a class="b src" href="src/River.m4a" download>&#11015; SOURCE M4A <em>River.m4a · 1.7 MB · on this site</em></a></div>
+<div class="do"><span class="k">Do this</span>Untouched brand outro. Keep the Trustpilot stars readable.</div></article>
+<footer>Full films: <a href="https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_90s_v16.mp4">Courtney V16 MP4</a> &middot; <a href="https://github.com/gitteromri-ux/lla-s09-s10-downloads/releases/download/julie-v23-final/JULIE_LLA_V23_90S.mp4">Julie V23 MP4</a> &middot; Storyboards: <a href="https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_v16_Storyboard_95s.pdf">Courtney</a> &middot; <a href="https://github.com/gitteromri-ux/lla-s09-s10-downloads/releases/download/julie-v23-final/SB_V23_90S.pdf">Julie</a></footer>
 </div></body></html>
