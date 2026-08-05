@@ -1,0 +1,37 @@
+name: publish-v16-release
+on:
+  push:
+    branches: [release]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: cleanup stuck drafts
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for id in $(gh api repos/${{ github.repository }}/releases --jq '.[] | select(.draft==true and .tag_name=="courtney-v16-final") | .id'); do
+            gh api -X DELETE repos/${{ github.repository }}/releases/$id || true
+          done
+      - name: prepare assets
+        run: |
+          mkdir -p out
+          cp LLA-Courtney-101s-Master.mp4 out/LLA_Courtney_FULL_v16.mp4
+          cp LLA-Courtney-90s-Cut.mp4 out/LLA_Courtney_90s_v16.mp4
+          cp Storyboard-101s.pdf out/LLA_Courtney_v16_Storyboard_101s.pdf
+          cp Storyboard-95s.pdf out/LLA_Courtney_v16_Storyboard_95s.pdf
+      - name: create release with assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete courtney-v16-final --repo ${{ github.repository }} --yes || true
+          gh release create courtney-v16-final \
+            --repo ${{ github.repository }} \
+            --target ${{ github.sha }} \
+            --title "Courtney v16 Final" \
+            --notes "Final v16: 101s master + 95s cut (-14 LUFS, 7 card dissolves) with matching storyboards." \
+            out/LLA_Courtney_FULL_v16.mp4 out/LLA_Courtney_90s_v16.mp4 out/LLA_Courtney_v16_Storyboard_101s.pdf out/LLA_Courtney_v16_Storyboard_95s.pdf
