@@ -1,0 +1,77 @@
+name: silent-sources
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/silent.yml']
+permissions:
+  contents: write
+env:
+  TAG: raw-sources-silent-v1
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - run: |
+          gh release view "$TAG" --repo ${{ github.repository }} >/dev/null 2>&1 || \
+          gh release create "$TAG" --repo ${{ github.repository }} --title "RAW SOURCES - full length, no audio, no captions" --notes "Original source files at full sourced length. Audio stream removed. No captions, no voiceover, no music."
+  pull:
+    needs: seed
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        f:
+          - { id: '1PdSssz7h-uIfbAy5lyQMh7mtQB4_bKoa', out: 'SOURCE_LLA_outro_card_FULL_NOAUDIO.mp4' }
+          - { id: '1KsUiDOqkWaFp1oOygRlnrSS52CFfccbL', out: 'SOURCE_RAW_Courtney_FRONT_camera_NOAUDIO.mp4' }
+          - { id: '1xm0OmWfRpcFAqd4EGeDJ2XoYUPguk_9D', out: 'SOURCE_RAW_Courtney_testimonials_session_NOAUDIO.mp4' }
+          - { id: '1A1GwDVEdkcZ61iP6y4GQSQWIIzB7ZDpU', out: 'SOURCE_RAW_Julie_MAIN_camera_NOAUDIO.mp4' }
+          - { id: '1MEU19imeTsRXuj00dJLlkIF4IPRy8sFq', out: 'SOURCE_RAW_Julie_SECOND_camera_NOAUDIO.mp4' }
+          - { id: '1xzsMotbRijSd7GC9KoYj8uqIrGwd8Cg4', out: 'SOURCE_berries_food_FULL_NOAUDIO.mp4' }
+          - { id: '1Go7jpVvKvXgouFSqkwGzCmsBnLBssYLA', out: 'SOURCE_blue_disc_macro_FULL_NOAUDIO.mp4' }
+          - { id: '1zUkK8LISI_wK7YXXlITkBIKHXb3A7xni', out: 'SOURCE_cgm_arm_numbers_8K_HAS_BURNED_TEXT_NOAUDIO.mp4' }
+          - { id: '16gGR7Ym3tlDFKTjKRrhnQVoJkJ2yhQ0w', out: 'SOURCE_cgm_phone_and_arm_FULL_NOAUDIO.mp4' }
+          - { id: '1GjsVt6VLgFLMCzAuorT_cybdD9Sb5GWE', out: 'SOURCE_cgm_phone_and_arm_alt_FULL_NOAUDIO.mp4' }
+          - { id: '149GsFRTmiK9dZlDB1VnlzNDKL0Owfzsw', out: 'SOURCE_cgm_press_alt_FULL_NOAUDIO.mp4' }
+          - { id: '1WuhrHwYpunfbLgrBOfQuZlGk1RxTyibR', out: 'SOURCE_cgm_press_on_arm_FULL_NOAUDIO.mp4' }
+          - { id: '180hl-FgkPogl8IPQK1SdMqAFSJkNb10M', out: 'SOURCE_cgm_sensor_glow_FULL_NOAUDIO.mp4' }
+          - { id: '14kgX_afExOD_AGatGHInKm9R2BaYf-y_', out: 'SOURCE_cgm_sensor_glow_alt_FULL_NOAUDIO.mp4' }
+          - { id: '1RC456o7bfoSBD_dEceEhZIXKgTKLRWM0', out: 'SOURCE_dancing_man_endcard_FULL_NOAUDIO.mp4' }
+          - { id: '1AfkUK5DO5JU4AxlWjKu7R8gRKeGiNGI9', out: 'SOURCE_dna_helix_transition_FULL_NOAUDIO.mp4' }
+          - { id: '1l6lvM_nVedW5__FjiMjdjohqe2mkruDO', out: 'SOURCE_eye_macro_opening_FULL_NOAUDIO.mp4' }
+          - { id: '1qpReskgWolCg1zrKSxWP74_jfgx8GvV6', out: 'SOURCE_food1_FULL_NOAUDIO.mp4' }
+          - { id: '10Y0MVscft6tFAcfVEPJg-KUKdTL-Gvc8', out: 'SOURCE_green_pipette_FULL_NOAUDIO.mp4' }
+          - { id: '15cRxJrTGuiQnx4KemGjLXtMywKpMaxR5', out: 'SOURCE_instructors_page_8K_FULL_NOAUDIO.mp4' }
+          - { id: '1tWkAZ5YklLNvJrRW_HlnvwmZSCtqHSCA', out: 'SOURCE_live_it_well_endplate_FULL_NOAUDIO.mp4' }
+          - { id: '17T_XGWYya9QLvXFJAksBtWbEwctLt2jX', out: 'SOURCE_livingroom_empty_FULL_NOAUDIO.mp4' }
+          - { id: '1E3AjI__7u-kRXD1xkTercaLcfu_Jh2NV', out: 'SOURCE_man_kitchen_cgm_FULL_NOAUDIO.mp4' }
+          - { id: '1FZZo1cuADXynK0XSq80eYWBOox3IU8oH', out: 'SOURCE_man_testimonial_kitchen_FULL_NOAUDIO.mp4' }
+          - { id: '16GXs4QFd_CMhUCiocICIuV8Tab--Kk4-', out: 'SOURCE_movement_alt_FULL_NOAUDIO.mp4' }
+          - { id: '1IRFPiFcKvDhGnJEY0NY3lyKN3qEzIyXM', out: 'SOURCE_movement_battleropes_FULL_NOAUDIO.mp4' }
+          - { id: '1xizo8vvK2iJ6Rpx54WBEEI2CwVpGKfJO', out: 'SOURCE_nutrition_avocado_shake_4K_FULL_NOAUDIO.mp4' }
+          - { id: '1x6HQ3aAgGAXfwY6kz6x_WCEk1hwHp5L4', out: 'SOURCE_particle_burst_FULL_NOAUDIO.mp4' }
+          - { id: '1f3nw5kaVX67rrUkxhZkmtEa2QscjOoR_', out: 'SOURCE_phone_google_search_FULL_NOAUDIO.mp4' }
+          - { id: '1TkYJLR9vdVU5s_PGFZIqgmF4k36od-zR', out: 'SOURCE_pills_capsule_macro_FULL_NOAUDIO.mp4' }
+          - { id: '1RfJxJXmDE9dTV9tLxsKAMCyMwkkLb3CR', out: 'SOURCE_pills_gold_alt_FULL_NOAUDIO.mp4' }
+          - { id: '1CLOAYdN0nGBHsacUUuCy_j5m_6Fb60xb', out: 'SOURCE_protocol_wheel_FULL_NOAUDIO.mp4' }
+          - { id: '1J4iJiX38QmU8AIrjV6h7QxaHdCcPHy0W', out: 'SOURCE_protocol_wheel_alt_FULL_NOAUDIO.mp4' }
+          - { id: '1dxph5_PqNLcdGfbXl9MyPpR0mX9sJCdw', out: 'SOURCE_stretching_4K_FULL_NOAUDIO.mp4' }
+          - { id: '1iVkGHejRIZq8sdTdux19KJ_J5fIHt3lu', out: 'SOURCE_supplements_capsules_4K_FULL_NOAUDIO.mp4' }
+          - { id: '122jveTVKSqUzn-VWJeMRjVD-VsW6UWLh', out: 'SOURCE_website_faculty_page_8K_FULL_NOAUDIO.mp4' }
+          - { id: '1BBV-R-GMgOLwQ54PoeGIeEmvAMa_aZ94', out: 'SOURCE_woman_laptop_couch_FULL_NOAUDIO.mp4' }
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: fetch, strip audio, upload
+        run: |
+          set -e
+          ID='${{ matrix.f.id }}'; OUT='${{ matrix.f.out }}'
+          curl -sL -A "Mozilla/5.0" "https://drive.usercontent.google.com/download?id=$ID&export=download&confirm=t" -o src.mp4
+          ls -la src.mp4
+          ffmpeg -nostdin -y -v error -i src.mp4 -c:v copy -an -movflags +faststart "$OUT" || \
+          ffmpeg -nostdin -y -v error -i src.mp4 -c:v libx264 -crf 18 -preset veryfast -an -movflags +faststart "$OUT"
+          test ! "$(ffprobe -v error -select_streams a -show_entries stream=codec_name -of csv=p=0 "$OUT")" || (echo "AUDIO STILL PRESENT" && exit 1)
+          ls -la "$OUT"
+          gh release upload "$TAG" "$OUT" --repo ${{ github.repository }} --clobber
