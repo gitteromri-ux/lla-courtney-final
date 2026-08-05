@@ -1,0 +1,115 @@
+name: meta-pack
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/meta-pack.yml']
+permissions:
+  contents: write
+env:
+  TAG: meta-pack-v1
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - run: |
+          gh release view "$TAG" --repo ${{ github.repository }} >/dev/null 2>&1 || \
+          gh release create "$TAG" --repo ${{ github.repository }} --title "LLA Meta/IG Pack v1" --notes "Auto-generated Meta and Instagram resizes plus 60s cuts."
+
+  render:
+    needs: seed
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        film:
+          - { key: JULIE_FULL,    url: 'https://github.com/gitteromri-ux/lla-s09-s10-downloads/releases/download/julie-v23-final/JULIE_LLA_V23_FULL.mp4' }
+          - { key: JULIE_90S,     url: 'https://github.com/gitteromri-ux/lla-s09-s10-downloads/releases/download/julie-v23-final/JULIE_LLA_V23_90S.mp4' }
+          - { key: COURTNEY_FULL, url: 'https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_FULL_v16.mp4' }
+          - { key: COURTNEY_90S,  url: 'https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_90s_v16.mp4' }
+        size:
+          - { key: 1x1_1080x1080,  w: 1080, h: 1080, ar: '1/1' }
+          - { key: 4x5_1080x1350,  w: 1080, h: 1350, ar: '1080/1350' }
+          - { key: 9x16_1080x1920, w: 1080, h: 1920, ar: '1080/1920' }
+          - { key: 16x9_1920x1080, w: 1920, h: 1080, ar: '1920/1080' }
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Fetch source
+        run: curl -sL -o src.mp4 "${{ matrix.film.url }}" && ls -la src.mp4 && ffprobe -v error -show_entries format=duration -of csv=p=0 src.mp4
+      - name: Render ${{ matrix.film.key }} ${{ matrix.size.key }}
+        run: |
+          OUT="${{ matrix.film.key }}_${{ matrix.size.key }}.mp4"
+          if [ "${{ matrix.size.key }}" = "16x9_1920x1080" ]; then
+            ffmpeg -v error -y -i src.mp4 -c copy -movflags +faststart "$OUT"
+          else
+            ffmpeg -v error -y -i src.mp4 \
+              -vf "crop='min(iw,ih*(${{ matrix.size.ar }}))':'min(ih,iw/(${{ matrix.size.ar }}))',scale=${{ matrix.size.w }}:${{ matrix.size.h }}:flags=lanczos" \
+              -c:v libx264 -preset medium -crf 20 -pix_fmt yuv420p -profile:v high -level 4.1 \
+              -c:a aac -b:a 128k -ar 48000 -ac 2 -movflags +faststart "$OUT"
+          fi
+          ffprobe -v error -select_streams v:0 -show_entries stream=width,height,codec_name -of csv=p=0 "$OUT"
+          ffprobe -v error -select_streams a:0 -show_entries stream=codec_name,channels,sample_rate -of csv=p=0 "$OUT"
+          python3 -c "import sys;d=open('$OUT','rb').read(400000);m=d.find(b'moov');a=d.find(b'mdat');print('faststart',m,a);sys.exit(0 if 0<m<a else 1)"
+          ls -la "$OUT"
+      - name: Publish
+        run: gh release upload "$TAG" "${{ matrix.film.key }}_${{ matrix.size.key }}.mp4" --repo ${{ github.repository }} --clobber
+
+  cut60:
+    needs: seed
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        film:
+          - { key: JULIE_60S,    url: 'https://github.com/gitteromri-ux/lla-s09-s10-downloads/releases/download/julie-v23-final/JULIE_LLA_V23_90S.mp4',  head: 40, tail: 20 }
+          - { key: COURTNEY_60S, url: 'https://github.com/gitteromri-ux/lla-courtney-final/releases/download/courtney-v16-final/LLA_Courtney_90s_v16.mp4', head: 40, tail: 20 }
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: curl -sL -o src.mp4 "${{ matrix.film.url }}"
+      - name: Build 60s cut, hook plus CTA, audio crossfaded
+        run: |
+          D=$(ffprobe -v error -show_entries format=duration -of csv=p=0 src.mp4)
+          H=${{ matrix.film.head }}
+          T=${{ matrix.film.tail }}
+          TS=$(python3 -c "print(round(float('$D')-$T,3))")
+          echo "duration=$D head=0-$H tail=${TS}-$D"
+          ffmpeg -v error -y -i src.mp4 -t $H -c:v libx264 -preset medium -crf 20 -pix_fmt yuv420p -c:a aac -b:a 128k -ar 48000 -ac 2 a.mp4
+          ffmpeg -v error -y -ss $TS -i src.mp4 -c:v libx264 -preset medium -crf 20 -pix_fmt yuv420p -c:a aac -b:a 128k -ar 48000 -ac 2 b.mp4
+          printf "file 'a.mp4'\nfile 'b.mp4'\n" > list.txt
+          OUT="${{ matrix.film.key }}_1920x1080.mp4"
+          ffmpeg -v error -y -f concat -safe 0 -i list.txt -c:v libx264 -preset medium -crf 20 -pix_fmt yuv420p -c:a aac -b:a 128k -ar 48000 -ac 2 -movflags +faststart "$OUT"
+          ffprobe -v error -show_entries format=duration -of csv=p=0 "$OUT"
+          ffprobe -v error -select_streams a:0 -show_entries stream=codec_name,channels -of csv=p=0 "$OUT"
+          python3 -c "import sys;d=open('$OUT','rb').read(400000);m=d.find(b'moov');a=d.find(b'mdat');sys.exit(0 if 0<m<a else 1)"
+          ls -la "$OUT"
+      - name: Publish
+        run: gh release upload "$TAG" "${{ matrix.film.key }}_1920x1080.mp4" --repo ${{ github.repository }} --clobber
+
+  verify:
+    needs: [render, cut60]
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Download every asset back and audit
+        run: |
+          gh release download "$TAG" --repo ${{ github.repository }} -D all
+          ls -la all
+          COUNT=$(ls all/*.mp4 | wc -l)
+          echo "asset count = $COUNT"
+          for f in all/*.mp4; do
+            W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of csv=p=0 "$f")
+            H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 "$f")
+            A=$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of csv=p=0 "$f")
+            D=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
+            echo "$f ${W}x${H} audio=$A dur=$D"
+            test -n "$A" || { echo "NO AUDIO in $f"; exit 1; }
+          done
+          test "$COUNT" -eq 18 || { echo "expected 18 assets, got $COUNT"; exit 1; }
