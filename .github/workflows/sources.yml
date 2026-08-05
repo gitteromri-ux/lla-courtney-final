@@ -1,0 +1,101 @@
+name: sources
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/sources.yml']
+permissions:
+  contents: write
+env:
+  TAG: editor-sources-v1
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - run: |
+          gh release view "$TAG" --repo ${{ github.repository }} >/dev/null 2>&1 || \
+          gh release create "$TAG" --repo ${{ github.repository }} --title "Editor source footage — original files, no text burned in" --notes "Every original camera, b-roll and graphic source file. Direct download."
+  pull:
+    needs: seed
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        f:
+          - { id: '1nIb89VEMytwl4u1Jmn8JMn6T2YTmVtpl', out: 'RAW_Courtney_FRONT_PRO.mp4', size: '1311135197' }
+          - { id: '1aAHLQ70jzJIne7miLERBcHi5vwqEIvK3', out: 'RAW_Julie_MAIN_CAMERA.mp4', size: '974501325' }
+          - { id: '1FyzS-o7RoE-1OqLWQrjSDsGXYYmwQ08K', out: 'RAW_Julie_SECOND_CAMERA.mp4', size: '2437801765' }
+          - { id: '1DIpW4215BYKk17wgdhfc7qWloWypgC1I', out: 'RAW_Courtney_TESTIMONIALS_SESSION.mp4', size: '236695345' }
+          - { id: '1KU-unbrr58_Z6IH_6n8luMRkRfBL_z1m', out: 'MASTER_LLA_Courtney_90s_v17_4K.mp4', size: '452036142' }
+          - { id: '16EAqRFAM3V0W-LhdkJXQkE4HengE5Ku5', out: 'FOOTAGE_20260805_003018.mp4', size: '132083712' }
+          - { id: '1uhuWkvYTg8ppPVFPL7l_Sk2CA4bvP_rh', out: 'BROLL_TRANSITION_2.mp4', size: '107536795' }
+          - { id: '19kZn-9ncbCC-PFVqxxuGwam__vPwoA7h', out: 'BROLL_BLUEPRINT_PAGE.mp4', size: '38114304' }
+          - { id: '1-YGeC_vzNUuvWDUhJaj63ccA5VM9tOGc', out: 'BROLL_MOVEMENT.mp4', size: '39143424' }
+          - { id: '1K99tWgu26Oq_wxjTIOuT9ymwDnvh4FiC', out: 'BROLL_PROTOCOL_1.mp4', size: '10984448' }
+          - { id: '1pXi8zHnenQVyLcdNUmdmAtZvTf563VpH', out: 'BROLL_OUTRO_PLUS_OPEN_2.mp4', size: '32920576' }
+          - { id: '1sn7ncGyQhJsUFFDMTjXyWNI4CEIb9wDM', out: 'BROLL_ADD_1.mp4', size: '34274304' }
+          - { id: '1-U_eCGwBiQw3WXhgUXlfxSZEhWk6_Hqg', out: 'BROLL_WOMAN_PORTRAIT_LOOKING_AT_CAMERA_4K.mp4', size: '5057536' }
+          - { id: '1DWP_BOLbvYfkCU_q-fMWwaKQc5TkkP10', out: 'BROLL_OPEN_BEFORE_COURTNEY.mp4', size: '43113365' }
+          - { id: '159IqclHLfIaGvZmDGUgFVZQyYi6Jb0NF', out: 'BROLL_FOOD1.mp4', size: '60990338' }
+          - { id: '1Y6qdEgEF6gxaKb3CjrI7B6Z2Gf0nbqWp', out: 'BROLL_FOOD3.mp4', size: '64843938' }
+          - { id: '1ISwa_tY02j7Qf-vFC-gQOJ1f-QBc9v9T', out: 'BROLL_AVOCADO_SHAKE_SMOOTHIE_4K.mp4', size: '60990338' }
+          - { id: '1t88MikUhqlNildJdW5TVmO65To94ydi2', out: 'BROLL_SPORT.mp4', size: '39144210' }
+          - { id: '1sLfFWCcP476MU2ABZ9P08xQgXZnwFdff', out: 'BROLL_SPORT2.mp4', size: '81399767' }
+          - { id: '1l1fU2pM738xyikjljTWcrljL4Dzw5C98', out: 'BROLL_SPORT3.mp4', size: '58141308' }
+          - { id: '1g-mKR1qAwvlCHVpwvPIoEMgbS-rPrxEn', out: 'BROLL_EQUIPMENT_STRETCHING_TRAINING_4K.mp4', size: '81399767' }
+          - { id: '1BjZEiVSh1QtwsDwsZL45OEVkHAWZMIn8', out: 'BROLL_PILLS_DRUG_FUTURISTIC_LIGHT_4K.mp4', size: '68461480' }
+          - { id: '1bUE_KLioe1IOPUXDr6AkQLQaSbtXIXMR', out: 'BROLL_TRANSITION_CELLS_GENETICS_3D_2K.mp4', size: '43183998' }
+          - { id: '10Y2JmVO0I3x1A8A8AUWXEzmPb3-xTqtx', out: 'BROLL_CGM_LONGEVITY_1.mp4', size: '15575209' }
+          - { id: '1yCocLUMedCP09kJBKRkPx6qunrwvU8ND', out: 'BROLL_PROTOCOL2.mp4', size: '10984865' }
+          - { id: '1sqkyhqKnlhJ5ET7XiaTZEFobT7ZubJvt', out: 'BROLL_END_FAST_LAST.mp4', size: '27337949' }
+          - { id: '1Ql5jTuQJgZ1hqS6TKkZ3aXyKJtLN-Htg', out: 'BROLL_SOPLLEE.mp4', size: '16950203' }
+          - { id: '1rIY8YgZyWuoq6k379JSRlOuyVxgqmEOb', out: 'GRAPHIC_OUTRO_ROSEN.mp4', size: '21039377' }
+          - { id: '1l-Bri8wcQVrUu-zypNlVmWFRVgrAFbzG', out: 'GRAPHIC_LLA_OUTRO_CARD.mp4', size: '1618781' }
+          - { id: '1VY93YvEC7fU9jiHpxTY2ix_x6EVzABKh', out: 'GRAPHIC_LLA_VO2MAX_BANNER.mp4', size: '2392644' }
+          - { id: '1lgYUN7dI_BVbQmk4xjZtUeELahz_TK48', out: 'GRAPHIC_PHONES_COLLAGE.png', size: '8751441' }
+          - { id: '160JhFGcJ5YoGY8ll63MGLtbn2osWwGZE', out: 'GRAPHIC_CARD_1.png', size: '119325' }
+          - { id: '134mchTr1DTAzX89GGkkZlezawyBJqzoE', out: 'GRAPHIC_02_MISSION.png', size: '1336320' }
+          - { id: '1FqNe8efiUk5UL8hu8u1mZVDHmNrL_GCW', out: 'AUDIO_MUSIC_River.m4a', size: '1819499' }
+          - { id: '1DN1uruKS-vb2Ie1oxTsHLW_CvfZtfACT', out: 'LIPFIX_S1.mp4', size: '2221319' }
+          - { id: '1XNGHskiFlLK22p_B4B6bdZ8c3H0m0sDu', out: 'LIPFIX_S2.mp4', size: '956762' }
+          - { id: '1z_OD-fMcHZL-tGYRNo3vvOi15JDR55sO', out: 'LIPFIX_S3.mp4', size: '5076950' }
+          - { id: '1dbi5T7Rjx7ZCfCu4f2IL4nZ9EBeRnhB2', out: 'LIPFIX_S4.mp4', size: '2083779' }
+          - { id: '1eE8afzd7OSQse4CgcaTNkV-FAVBc_VFy', out: 'LIPFIX_S1.wav', size: '282318' }
+          - { id: '10zhcP0mrOPltRVcRQD59hn54kRnuf1_D', out: 'LIPFIX_S2.wav', size: '88278' }
+          - { id: '1Ltl133DrWWLiXBi4aJEo4tbWmGD6ZdXd', out: 'LIPFIX_S3.wav', size: '693922' }
+          - { id: '1k1Uc9qJKjUVRcQLJEFYoHeWcWquocNK0', out: 'LIPFIX_S4.wav', size: '307896' }
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Download from Drive
+        run: |
+          set -e
+          for attempt in 1 2 3; do
+            curl -sL -C - -A "Mozilla/5.0" \
+              "https://drive.usercontent.google.com/download?id=${{ matrix.f.id }}&export=download&confirm=t" \
+              -o "${{ matrix.f.out }}" || true
+            S=$(stat -c%s "${{ matrix.f.out }}")
+            echo "attempt $attempt got $S bytes"
+            if [ "$S" -gt 50000 ]; then break; fi
+            rm -f "${{ matrix.f.out }}"
+          done
+          ls -la "${{ matrix.f.out }}"
+          S=$(stat -c%s "${{ matrix.f.out }}")
+          test "$S" -gt 50000
+          head -c 200 "${{ matrix.f.out }}" | grep -qi "<html" && { echo "GOT HTML NOT FILE"; exit 1; } || true
+      - name: Upload to release
+        run: gh release upload "$TAG" "${{ matrix.f.out }}" --repo ${{ github.repository }} --clobber
+  verify:
+    needs: pull
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - run: |
+          gh release view "$TAG" --repo ${{ github.repository }} --json assets \
+            -q '.assets[] | "\(.name) \(.size)"' | sort
+          N=$(gh release view "$TAG" --repo ${{ github.repository }} --json assets -q '.assets|length')
+          echo "asset count = $N"
+          test "$N" -ge 40
