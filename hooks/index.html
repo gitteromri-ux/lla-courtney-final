@@ -4,29 +4,33 @@
 <style>
 :root{--bg:#070A12;--ink:#F2EDE3;--dim:#8B93A7;--neon:#4DE1FF;--line:#1B2233;--lock:#FFC24D}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1180px;margin:0 auto;padding:64px 28px 120px}
+.wrap{max-width:1320px;margin:0 auto;padding:64px 28px 120px}
 h1{font-family:'Instrument Serif',serif;font-size:clamp(44px,7vw,86px);line-height:.98;margin:0 0 18px;letter-spacing:-.02em}
 h1 em{color:var(--neon);font-style:italic}
-.sub{color:var(--dim);font-size:18px;max-width:760px;line-height:1.55}
+.sub{color:#D7DEEC;font-size:26px;max-width:900px;line-height:1.5;font-weight:400}
 .rule{margin:44px 0;height:1px;background:linear-gradient(90deg,var(--neon),transparent)}
-h2{font-family:'Instrument Serif',serif;font-size:clamp(30px,4vw,46px);margin:0 0 6px;letter-spacing:-.01em}
-.meta{color:var(--neon);font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;margin-bottom:26px}
-.hooks{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin:22px 0 40px}
-.hk{background:linear-gradient(160deg,#0E1524,#0A0E18);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
-.hkt{font-weight:800;font-size:15px;letter-spacing:.06em}
-.hks{color:var(--neon);font-family:ui-monospace,monospace;font-size:13px;margin:8px 0 12px}
-.hk p{margin:0 0 12px;line-height:1.5;font-size:15px}
-.why{color:var(--dim);font-size:13.5px;line-height:1.5;border-top:1px solid var(--line);padding-top:11px}
-table{width:100%;border-collapse:collapse;font-size:13.5px}
-th{text-align:left;color:var(--dim);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:10px 10px;border-bottom:1px solid var(--line)}
-td{padding:11px 10px;border-bottom:1px solid #121826;vertical-align:top}
+h2{font-family:'Instrument Serif',serif;font-size:clamp(40px,5.5vw,68px);margin:0 0 6px;letter-spacing:-.01em}
+.meta{color:var(--neon);font-size:18px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin-bottom:26px}
+.hooks{display:grid;grid-template-columns:1fr;gap:26px;margin:28px 0 56px}
+.hk{background:linear-gradient(160deg,#101829,#0A0E18);border:1px solid #26314A;border-radius:22px;padding:38px 40px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.hkrow{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.hkbadge{width:52px;height:52px;border-radius:14px;background:var(--neon);color:#04121A;font-weight:800;font-size:26px;display:grid;place-items:center}
+.hkname{font-size:22px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.hkwords{font-family:'Instrument Serif',serif;font-size:clamp(34px,4.6vw,60px);line-height:1.06;color:#fff;margin:0 0 22px;letter-spacing:-.015em}
+
+.hks{color:var(--neon);font-family:ui-monospace,monospace;font-size:17px;margin:0 0 18px;font-weight:600}
+.hk p{margin:0 0 18px;line-height:1.55;font-size:21px;color:#E7ECF6}
+.why{color:#AAB4C8;font-size:19px;line-height:1.55;border-top:1px solid #26314A;padding-top:18px}
+table{width:100%;border-collapse:collapse;font-size:19px}
+th{text-align:left;color:#A9B3C7;font-size:14px;letter-spacing:.14em;text-transform:uppercase;padding:10px 10px;border-bottom:1px solid var(--line)}
+td{padding:16px 12px;border-bottom:1px solid #121826;vertical-align:top}
 .id{font-weight:800;color:var(--neon);font-family:ui-monospace,monospace}
-.tc{font-family:ui-monospace,monospace;color:#C8D0E0;white-space:nowrap}
-.lk{color:var(--lock);font-weight:800;font-size:11px;letter-spacing:.1em}
-.fx{color:var(--dim);font-size:11px;letter-spacing:.1em}
+.tc{font-family:ui-monospace,monospace;color:#D5DDEC;white-space:nowrap;font-size:18px}
+.lk{color:var(--lock);font-weight:800;font-size:14px;letter-spacing:.1em}
+.fx{color:var(--dim);font-size:14px;letter-spacing:.1em}
 a{color:var(--neon);text-decoration:none;border-bottom:1px solid rgba(77,225,255,.35)}
-.note{background:#0C1220;border-left:3px solid var(--lock);padding:18px 22px;border-radius:0 12px 12px 0;margin:26px 0;line-height:1.6;font-size:15px}
-.tot{display:inline-block;background:rgba(77,225,255,.1);border:1px solid rgba(77,225,255,.35);color:var(--neon);padding:6px 14px;border-radius:999px;font-weight:800;font-size:13px;margin-left:10px}
+.note{background:#0C1220;border-left:5px solid var(--lock);padding:28px 32px;border-radius:0 16px 16px 0;margin:34px 0;line-height:1.6;font-size:22px}
+.tot{display:inline-block;background:rgba(77,225,255,.12);border:1px solid rgba(77,225,255,.4);color:var(--neon);padding:10px 20px;border-radius:999px;font-weight:800;font-size:19px;margin-left:14px;vertical-align:middle}
 </style></head><body><div class="wrap">
 <h1>Julie 90s + Courtney 70s<br><em>hook-first lead-gen cuts</em></h1>
 <p class="sub">Every frame and every word already exists in V16 and V23. Nothing is rewritten, re-voiced, re-rendered or replaced. These are re-order and trim instructions only — the masters are untouched.</p>
@@ -34,9 +38,24 @@ a{color:var(--neon);text-decoration:none;border-bottom:1px solid rgba(77,225,255
 <div class="rule"></div>
 <h2>Julie — 90 seconds<span class="tot">90.00s · 23 scenes</span></h2>
 <div class="meta">Three hooks, split-test A vs B first</div>
-<div class="hooks"><div class="hk"><div class="hkt">HOOK A — THE NUMBER</div><div class="hks">J06 26.65→29.05</div><p>Chart: one calendar year — 12 months for everyone else, about 8 months for Julie. Silent, no VO. Full-frame, 2.4s.</p><div class="why">Highest hook rate. A number on screen with nothing to read out loud. Sound-off native.</div></div>
-<div class="hk"><div class="hkt">HOOK B — THE TITLE</div><div class="hks">J02 7.37→10.17</div><p>Julie on camera, existing black box caption: 2nd Slowest-Aging Person on Earth.</p><div class="why">Authority-first. Best for cold interest audiences who need a reason to trust before they hear a claim.</div></div>
-<div class="hk"><div class="hkt">HOOK C — THE MYTH</div><div class="hks">J03 12.03→14.90</div><p>Existing floating line: WILLPOWER RUNS OUT. Held on her face, then chart.</p><div class="why">Best for retargeting — argues with the belief that blocked them the first time.</div></div></div>
+<div class="hooks"><div class="hk">
+<div class="hkrow"><span class="hkbadge">A</span><span class="hkname">THE NUMBER</span></div>
+<div class="hkwords">12 months for everyone else.<br>About 8 months for Julie.</div>
+<div class="hks">FIRST 29.05 — use existing frames J06 26.65→29.05</div>
+<p>Chart: one calendar year — 12 months for everyone else, about 8 months for Julie. Silent, no VO. Full-frame, 2.4s.</p>
+<div class="why"><b>Why it pulls leads:</b> Highest hook rate. A number on screen with nothing to read out loud. Sound-off native.</div></div>
+<div class="hk">
+<div class="hkrow"><span class="hkbadge">B</span><span class="hkname">THE TITLE</span></div>
+<div class="hkwords">2nd Slowest-Aging<br>Person on Earth</div>
+<div class="hks">FIRST 10.17 — use existing frames J02 7.37→10.17</div>
+<p>Julie on camera, existing black box caption: 2nd Slowest-Aging Person on Earth.</p>
+<div class="why"><b>Why it pulls leads:</b> Authority-first. Best for cold interest audiences who need a reason to trust before they hear a claim.</div></div>
+<div class="hk">
+<div class="hkrow"><span class="hkbadge">C</span><span class="hkname">THE MYTH</span></div>
+<div class="hkwords">WILLPOWER<br>RUNS OUT</div>
+<div class="hks">FIRST 14.90 — use existing frames J03 12.03→14.90</div>
+<p>Existing floating line: WILLPOWER RUNS OUT. Held on her face, then chart.</p>
+<div class="why"><b>Why it pulls leads:</b> Best for retargeting — argues with the belief that blocked them the first time.</div></div></div>
 <table><thead><tr><th>ID</th><th>New timeline</th><th>Dur</th><th>Source in → out</th><th>Scene</th><th>Rule</th><th>Source file</th></tr></thead><tbody>
 <tr><td class="id">J06</td><td class="tc">000.00 → 002.80</td><td class="tc">2.80s</td><td class="tc">26.65 → 29.45</td><td>CHART — one calendar year: 12 months typical vs about 8 months for Julie</td><td class="lk">LOCKED</td><td>CHART J06 — rebuild at 4K</td></tr>
 <tr><td class="id">J02</td><td class="tc">002.80 → 007.56</td><td class="tc">4.76s</td><td class="tc">7.37 → 12.13</td><td>HOOK — Julie on camera, 2nd Slowest-Aging Person on Earth</td><td class="lk">LOCKED</td><td>CARD J02 — rebuild at 4K</td></tr>
@@ -65,9 +84,24 @@ a{color:var(--neon);text-decoration:none;border-bottom:1px solid rgba(77,225,255
 <div class="rule"></div>
 <h2>Courtney — 70 seconds<span class="tot">70.00s · 29 scenes</span></h2>
 <div class="meta">Three hooks, split-test A vs B first</div>
-<div class="hooks"><div class="hk"><div class="hkt">HOOK A — THE EYE</div><div class="hks">C02 2.50→4.60</div><p>Eye macro pattern interrupt, existing plate, no card.</p><div class="why">Pure motion interrupt. Zero reading required in frame 1. Strongest 3-second hold rate of the three.</div></div>
-<div class="hk"><div class="hkt">HOOK B — THE PAYOFF UP FRONT</div><div class="hks">C25 59.50→62.50</div><p>Existing card pulled to position 2: Five habits by age 40. +14 extra years.</p><div class="why">Number-led. Moves the biggest existing claim from 60s to 3s. Best single lever for lead gen on this film.</div></div>
-<div class="hk"><div class="hkt">HOOK C — THE PAIN</div><div class="hks">C03 5.00→7.60</div><p>Courtney on camera: trying to fix your health.</p><div class="why">Problem-aware audiences. Use as the split-test control against A.</div></div></div>
+<div class="hooks"><div class="hk">
+<div class="hkrow"><span class="hkbadge">A</span><span class="hkname">THE EYE</span></div>
+<div class="hkwords">(no words — eye macro only)</div>
+<div class="hks">FIRST 4.60 — use existing frames C02 2.50→4.60</div>
+<p>Eye macro pattern interrupt, existing plate, no card.</p>
+<div class="why"><b>Why it pulls leads:</b> Pure motion interrupt. Zero reading required in frame 1. Strongest 3-second hold rate of the three.</div></div>
+<div class="hk">
+<div class="hkrow"><span class="hkbadge">B</span><span class="hkname">THE PAYOFF UP FRONT</span></div>
+<div class="hkwords">Five habits by age 40.<br>+14 extra years.</div>
+<div class="hks">FIRST 62.50 — use existing frames C25 59.50→62.50</div>
+<p>Existing card pulled to position 2: Five habits by age 40. +14 extra years.</p>
+<div class="why"><b>Why it pulls leads:</b> Number-led. Moves the biggest existing claim from 60s to 3s. Best single lever for lead gen on this film.</div></div>
+<div class="hk">
+<div class="hkrow"><span class="hkbadge">C</span><span class="hkname">THE PAIN</span></div>
+<div class="hkwords">Trying to fix<br>your health</div>
+<div class="hks">FIRST 7.60 — use existing frames C03 5.00→7.60</div>
+<p>Courtney on camera: trying to fix your health.</p>
+<div class="why"><b>Why it pulls leads:</b> Problem-aware audiences. Use as the split-test control against A.</div></div></div>
 <table><thead><tr><th>ID</th><th>New timeline</th><th>Dur</th><th>Source in → out</th><th>Scene</th><th>Rule</th><th>Source file</th></tr></thead><tbody>
 <tr><td class="id">C02</td><td class="tc">000.00 → 002.50</td><td class="tc">2.50s</td><td class="tc">2.50 → 5.00</td><td>HOOK — eye macro pattern interrupt</td><td class="lk">LOCKED</td><td><a href="https://drive.usercontent.google.com/download?id=1DWP_BOLbvYfkCU_q-fMWwaKQc5TkkP10&export=download&confirm=t">OPEN BEFORE CORTNEY — 43 MB</a></td></tr>
 <tr><td class="id">C25</td><td class="tc">002.50 → 005.50</td><td class="tc">3.00s</td><td class="tc">59.50 → 62.50</td><td>CARD — Five habits by age 40. +14 extra years.</td><td class="lk">LOCKED</td><td>CARD C25 — rebuild at 4K</td></tr>
